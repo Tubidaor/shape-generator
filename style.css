@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 .main {
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 /* .shape-gen-con {
   height: 60vh;
@@ -16,6 +16,7 @@
   height: 60vh;
   width: 100%;
   overflow: hidden;
+  /* z-index: 5; */
 }
 
 .shibe-img {
@@ -43,31 +44,25 @@
   animation: spin 5s infinite;
 }
 .triangle {
-  height: 0px;
-  width: 50px;
-  position: fixed;
+  height: 70px;
+  width: 70px;
+  position: relative;
   user-select: none;
-  z-index: 1000;
+  /* z-index: 1000; */
   pointer-events: none;
-  border-radius: 50%;  border-bottom: 70px solid green;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  /* animation: goup 5s infinite; */
+  clip-path: polygon(50% 0%, 0 90%, 100% 90%);
+  background-color: blue;
 }
 .triangle::before {
     content: "";
     display: block;
-    height: 0px;
-    /* width: 50px; */
-    position: relative;
-    border-bottom: 56px solid white;
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    bottom: -8px;
-    left: -40px;
-  
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    clip-path: polygon(50% 10%, 8% 85%, 92% 85%);
+    background-color: white;
 }
-.triangle-left {
+/* .triangle-left {
   height: 0px;
   width: 40px;
   border-bottom: 10px solid green;
@@ -93,7 +88,7 @@
   border-right: 5px solid transparent;
   position: absolute;
 
-}
+} */
 @keyframes goup {
   0% {left:0px; top: 60vh;}
   90% {left:0px; top: 0vh }

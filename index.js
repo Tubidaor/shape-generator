@@ -1,11 +1,12 @@
 // import {risingShapes} from './floating-shibes'
 
-let shibeImgs = []
+let shibeImgs = ["http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg"]
 
 function getShibeImages() {
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-  const url = 'http://shibe.online/api/shibes?count=10&urls=true&httpsUrls=true'
-  return fetch(proxyUrl + url, {
+  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const proxyUrl = "http://www.whateverorigin.org/get?url="
+  const url = 'http://shibe.online/api/shibes?count=10&urls=true&httpsUrls=false'
+  return fetch(proxyUrl +  encodeURIComponent(url), {
     method: "GET",
     headers: {
       "content-type": 'application/json'
@@ -21,12 +22,12 @@ function getShibeImages() {
 
 function displayImages() {
   // console.log('itran')
-  // risingShapes(50)
-  getShibeImages()
-    .then(images => risingShapes(images)
-    )
+  risingShapes(shibeImgs)
+  // getShibeImages()
+  //   .then(images => risingShapes(images)
+  //   )
 
-  // risingShapes(50)
+  // risingShapes(shibeImgs)
 }
 
 function makeImgWrappers(shibesArray) {
@@ -146,6 +147,8 @@ function trianglehit(rectone, recttwo){
  // end mousmove
 
 function risingShapes(shibeImgs) {
+
+  console.log('thisis running')
   let shibes = []
 
   let browserWidth
@@ -174,10 +177,13 @@ function risingShapes(shibeImgs) {
 
   function setup() {
     if (enableAnimations) {
-      if(document.readyState === "complete") {
-        setTimeout(generateCircle, 2000)
-        // window.addEventListener("DOMContentLoaded", generateCircle, true);
-      }
+      console.log(document.readyState)
+      // if(document.readyState === "complete") {
+      //   console.log('ready')
+      //   setTimeout(generateCircle, 5000)
+        window.addEventListener("DOMContentLoaded", generateCircle, true);
+        window.addEventListener("DOMContentLoaded", generateTriangle, true);
+      // }
       window.addEventListener("resize", setResetFlag, false)
     }
   }
@@ -217,8 +223,60 @@ function risingShapes(shibeImgs) {
     this.sign = Math.random() < 0.5 ? 1 : -1;
 
   }
+  function Triangle(element, speed, xPos, yPos, delay, image) {
+    // set initial snowflake properties
+    function returnColor(){
+      const colors = ["green", "blue", "orange"]
+      return colors[Math.floor(Math.random() * 3)]
+    }
+
+    // function returnRadius() {
+    //   const radius = ["50%", "0px"]
+    //   return radius[Math.floor(Math.random() * 2)]
+    // }
+
+    this.element = element;
+    this.speed = speed;
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.scale = 1;
+    this.delay = delay
+    this.image = image
+    this.height = Math.floor(Math.random() * 100) + "px"
+    // this.element.style.backgroundImage = `url("${this.image}")`
+    // this.element.style.backgroundSize = this.height
+    // this.element.style.borderRadius = returnRadius()
+    // this.element.backgroundPosition = "center"
+    this.element.style.animationDelay = this.delay
+    this.element.style.height = this.height
+    this.element.style.width = this.height
+    this.element.style.backgroundColor = returnColor()
+
+    // declare variables used for snowflake's motion
+    this.counter = 0;
+    this.sign = Math.random() < 0.5 ? 1 : -1;
+
+  }
 
   Circle.prototype.update = function () {
+    // using some trigonometry to determine our x and y position
+    this.counter += this.speed / 5000;
+    // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+    
+    this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
+    // this.yPos -= Math.sin(this.counter)
+    // this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
+
+    // setting our snowflake's position
+    setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
+
+    // if snowflake goes below the browser window, move it back to the top
+    if (this.yPos < -2000) {
+      this.yPos = browserHeight;
+    }
+    
+  }
+  Triangle.prototype.update = function () {
     // using some trigonometry to determine our x and y position
     this.counter += this.speed / 5000;
     // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
@@ -289,6 +347,54 @@ function risingShapes(shibeImgs) {
     moveCircles();
   }
 
+  function generateTriangle() {
+
+    // get our snowflake element from the DOM and store it
+    var originalTriangle = document.querySelector(".triangle");
+
+    // access our snowflake element's parent container
+    var triangleContainer = originalTriangle.parentNode;
+    triangleContainer.style.display = "block";
+
+    // get our browser's size
+    browserWidth = document.documentElement.clientWidth;
+    browserHeight = document.documentElement.clientHeight;
+    console.log("height", browserHeight)
+
+    // create each individual snowflake
+    for (var i = 0; i < numberOfShapes; i++) {
+      timing = timing + 1
+
+      // clone our original snowflake and add it to snowflakeContainer
+      var triangleClone = originalTriangle.cloneNode(true);
+      triangleContainer.appendChild(triangleClone);
+
+      // set our snowflake's initial position and related properties
+      var initialXPos = getPosition(50, browserWidth);
+      // var initialYPos = getPosition(50, browserHeight);
+      var initialYPos = 647
+      // var speed = 5 + Math.random() * 40;
+      let speed = 100
+      let initialDelay = `${timing}s`
+      console.log(timing)
+      // let shibeImage = shibeImgs[i]
+
+      // create our Snowflake object
+      var triangleObject = new Triangle(triangleClone,
+        speed,
+        initialXPos,
+        initialYPos,
+        initialDelay,
+      );
+      shibes.push(triangleObject);
+    }
+
+    triangleContainer.removeChild(originalTriangle);
+
+    moveTriangles();
+  }
+
+
   function moveCircles() {
 
     if (enableAnimations) {
@@ -315,6 +421,34 @@ function risingShapes(shibeImgs) {
 
     requestAnimationFrame(moveCircles);
   }
+
+  function moveTriangles() {
+
+    if (enableAnimations) {
+      for (var i = 0; i < shibes.length; i++) {
+        var triangle = shibes[i];
+        triangle.update();
+      }      
+    }
+
+    // Reset the position of all the snowflakes to a new value
+    if (resetPosition) {
+      browserWidth = document.documentElement.clientWidth;
+      browserHeight = document.documentElement.clientHeight;
+
+      for (var i = 0; i < shibes.length; i++) {
+        var circle = shibes[i];
+
+        circle.xPos = getPosition(50, browserWidth);
+        circle.yPos = getPosition(50, browserHeight);
+      }
+
+      resetPosition = false;
+    }
+
+    requestAnimationFrame(moveTriangles);
+  }
+
   function getPosition(offset, size) {
     const position = Math.round(-1 * offset + Math.random() * (size + 2 * offset))
     // console.log(position)
