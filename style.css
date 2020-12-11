@@ -1,0 +1,105 @@
+
+* {
+  box-sizing: border-box;
+}
+.main {
+  background-color: aliceblue;
+}
+/* .shape-gen-con {
+  height: 60vh;
+} */
+#shape-gen-wrapper {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: none;
+  height: 60vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.shibe-img {
+  height: 50px;
+  width: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.circle {
+  position: relative;
+  user-select: none;
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 50%;
+  animation-delay: 2s;
+}
+.square {
+  position: fixed;
+  user-select: none;
+  z-index: 1000;
+  pointer-events: none;
+}
+.spin {
+  animation: spin 5s infinite;
+}
+.triangle {
+  height: 0px;
+  width: 50px;
+  position: fixed;
+  user-select: none;
+  z-index: 1000;
+  pointer-events: none;
+  border-radius: 50%;  border-bottom: 70px solid green;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  /* animation: goup 5s infinite; */
+}
+.triangle::before {
+    content: "";
+    display: block;
+    height: 0px;
+    /* width: 50px; */
+    position: relative;
+    border-bottom: 56px solid white;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    bottom: -8px;
+    left: -40px;
+  
+}
+.triangle-left {
+  height: 0px;
+  width: 40px;
+  border-bottom: 10px solid green;
+  transform: rotate(-45deg);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+}
+.triangle-right {
+  height: 0px;
+  width: 40px;
+  border-bottom: 10px solid green;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  transform: rotate(45deg);
+  position: absolute;
+}
+.triangle-bottom {
+  height: 0px;
+  width: 40px;
+  border-bottom: 10px solid green;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+
+}
+@keyframes goup {
+  0% {left:0px; top: 60vh;}
+  90% {left:0px; top: 0vh }
+  100% {left: 20px; top: -20vh;}
+}
+
+@keyframes spin {
+  0% {transform: rotate(25deg)}
+}
