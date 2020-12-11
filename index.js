@@ -181,8 +181,8 @@ function risingShapes(shibeImgs) {
       // if(document.readyState === "complete") {
       //   console.log('ready')
       //   setTimeout(generateCircle, 5000)
-        window.addEventListener("DOMContentLoaded", generateCircle, true);
-        window.addEventListener("DOMContentLoaded", generateTriangle, true);
+        window.addEventListener("DOMContentLoaded", generateShapes, true);
+        // window.addEventListener("DOMContentLoaded", generateTriangle, true);
       // }
       window.addEventListener("resize", setResetFlag, false)
     }
@@ -299,13 +299,16 @@ function risingShapes(shibeImgs) {
     el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
   }
 
-  function generateCircle() {
+  function generateShapes() {
 
     // get our snowflake element from the DOM and store it
     var originalCircle = document.querySelector(".circle");
+    let originalTriangle = document.querySelector(".triangle");
 
     // access our snowflake element's parent container
     var circleContainer = originalCircle.parentNode;
+    let triangleContainer = originalCircle.parentNode
+
     circleContainer.style.display = "block";
 
     // get our browser's size
@@ -316,7 +319,7 @@ function risingShapes(shibeImgs) {
     // create each individual snowflake
     for (var i = 0; i < numberOfShapes; i++) {
       timing = timing + 1
-
+      if(i % 2 === 0) {
       // clone our original snowflake and add it to snowflakeContainer
       var circleClone = originalCircle.cloneNode(true);
       circleContainer.appendChild(circleClone);
@@ -340,9 +343,40 @@ function risingShapes(shibeImgs) {
         shibeImage
       );
       shibes.push(circleObject);
+    } else {
+       // clone our original snowflake and add it to snowflakeContainer
+       var triangleClone = originalTriangle.cloneNode(true);
+       triangleContainer.appendChild(triangleClone);
+ 
+       // set our snowflake's initial position and related properties
+       var initialXPos = getPosition(50, browserWidth);
+       // var initialYPos = getPosition(50, browserHeight);
+       var initialYPos = 647
+       // var speed = 5 + Math.random() * 40;
+       let speed = 100
+       let initialDelay = `${timing}s`
+       console.log(timing)
+       // let shibeImage = shibeImgs[i]
+ 
+       // create our Snowflake object
+       var triangleObject = new Triangle(triangleClone,
+         speed,
+         initialXPos,
+         initialYPos,
+         initialDelay,
+       );
+       shibes.push(triangleObject);
+
     }
 
+
+    }
+
+
+
     circleContainer.removeChild(originalCircle);
+    triangleContainer.removeChild(originalTriangle);
+
 
     moveCircles();
   }
