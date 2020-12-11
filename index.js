@@ -302,7 +302,7 @@ function risingShapes(shibeImgs) {
   function generateShapes() {
 
     // get our snowflake element from the DOM and store it
-    var originalCircle = document.querySelector(".circle");
+    var originalCircle = document.querySelector(".circle-square");
     let originalTriangle = document.querySelector(".triangle");
 
     // access our snowflake element's parent container
