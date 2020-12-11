@@ -1,4 +1,4 @@
-function risingShapes(arrShibes) {
+export function risingShapes(arrShibes) {
   let shibes = []
 
   let browserWidth
@@ -163,6 +163,6 @@ function risingShapes(arrShibes) {
   }
 }
 
-$(risingShapes(50))
+// $(risingShapes(50))
 
 

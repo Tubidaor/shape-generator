@@ -30,7 +30,7 @@
   user-select: none;
   z-index: 1000;
   pointer-events: none;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   animation-delay: 2s;
 }
 .square {
