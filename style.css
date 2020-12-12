@@ -85,6 +85,7 @@ h2 {
 .shape-form {
   position: absolute;
   height: 40vh;
+  width: 40vw;
   left: 0;
   top: calc(100vh - 40vh);
 }
@@ -109,9 +110,39 @@ h2 {
 #blue-label, #green-label {
   color: black;
 }
-
-
-
+.shape-preview {
+  position: absolute;
+  height: 40vh;
+  width: 60vw;
+  right: 0;
+  top: calc(100vh - 40vh);
+}
+.circle-preview {
+  height: 100px;
+  width: 100px;
+  border: 5px solid orange;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.square-preview {
+  height: 100px;
+  width: 100px;
+  border: 5px solid orange;
+  margin-left: auto;
+  margin-right: auto;
+}
+.triangle-preview {
+  height: 100px;
+  width: 100px;
+  border: 5px solid orange;
+  margin-left: auto;
+  margin-right: auto;
+  transform: rotate(45deg);
+}
+.shape-hidden {
+  display: none;
+}
 
 @keyframes goup {
   0% {left:0px; top: 60vh;}

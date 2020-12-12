@@ -577,49 +577,73 @@ function risingShapes(shibeImgs) {
   }
 }
 
-function inputSelect() {
+function inputSelectColor() {
   console.log("input running")
   const orangeLabel = document.getElementById('orange-label')
   const blueLabel = document.getElementById('blue-label')
   const greenLabel = document.getElementById('green-label')
-  const colors = [orangeLabel,blueLabel,greenLabel]
-  const inputColors = document.getElementsByName('colors')
+  const circleBorder = document.getElementById('circle-preview')
+  const squareBorder = document.getElementById('square-preview')
 
   $(document).ready(function(){
     console.log('input running two')
     $("input[name=color]").on("click", function() {
       console.log($("input:checked").val())
-      if($("input:checked").val() === "orange") {
+      if($("input[name=color]:checked").val() === "orange") {
         orangeLabel.style.color = "orange"
+        circleBorder.style.border = "5px solid orange"
+        squareBorder.style.border = "5px solid orange"
         blueLabel.style.color = "black"
         greenLabel.style.color = "black"
       }
-      if($("input:checked").val() === "blue") {
+      if($("input[name=color]:checked").val() === "blue") {
         orangeLabel.style.color = "black"
         blueLabel.style.color = "blue"
+        circleBorder.style.border = "5px solid blue"
+        squareBorder.style.border = "5px solid blue"
         greenLabel.style.color = "black"
       }
-      if($("input:checked").val() === "green") {
+      if($("input[name=color]:checked").val() === "green") {
         orangeLabel.style.color = "black"
         blueLabel.style.color = "black"
         greenLabel.style.color = "green"
+        circleBorder.style.border = "5px solid green"
+        squareBorder.style.border = "5px solid green"
       }
-
-
-
-
-
-
     })
-
-    // $("#orange-input").on( "change", function() {
-    //   if(orangeLabel.style.color === "") {
-    //     console.log("changingcplor")
-    //     orangeLabel.style.color = "orange"
-    //   } else {
-    //     orangeLabel.style.color = "black"
-    //   }
-    // });
   });
 }
-$(inputSelect())
+function inputSelectShape() {
+  // const orangeLabel = document.getElementById('orange-label')
+  // const blueLabel = document.getElementById('blue-label')
+  // const greenLabel = document.getElementById('green-label')
+  const circle = document.getElementById('circle-preview')
+  const square = document.getElementById('square-preview')
+  const triangle = document.getElementById('triangle-preview')
+
+
+  $(document).ready(function(){
+    console.log('input running two')
+    $("input[name=shape]").on("click", function() {
+      console.log($("input[name=shape]:checked").val())
+      if($("input[name=shape]:checked").val() === "square") {
+        square.classList.remove("shape-hidden")
+        circle.classList.add("shape-hidden")
+        triangle.classList.add("shape-hidden")
+      }
+      if($("input[name=shape]:checked").val() === "triangle") {
+        square.classList.add("shape-hidden")
+        circle.classList.add("shape-hidden")
+        triangle.classList.remove("shape-hidden")
+      }
+      if($("input[name=shape]:checked").val() === "circle") {
+        square.classList.add("shape-hidden")
+        circle.classList.remove("shape-hidden")
+        triangle.classList.add("shape-hidden")
+      }
+    })
+  });
+}
+$(inputSelectColor())
+$(inputSelectShape())
+
