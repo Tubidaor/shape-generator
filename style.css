@@ -13,7 +13,7 @@
   left: 0px;
   top: 0px;
   display: none;
-  height: 60vh;
+  height: 50vh;
   width: 100%;
   overflow: hidden;
   /* z-index: 5; */
@@ -84,14 +84,14 @@ h2 {
 }
 .shape-form {
   position: absolute;
-  height: 40vh;
+  height: 50vh;
   width: 40vw;
   left: 0;
-  top: calc(100vh - 40vh);
+  top: calc(100vh - 50vh);
 }
-.select-color-con {
+.choices-con {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   font-size: .87rem;
 }
@@ -99,6 +99,11 @@ h2 {
   display: flex;
   align-items: center;
   /* align-self: baseline; */
+}
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 .input-orange {
   font-size: .87rem;
@@ -112,10 +117,10 @@ h2 {
 }
 .shape-preview {
   position: absolute;
-  height: 40vh;
+  height: 50vh;
   width: 60vw;
   right: 0;
-  top: calc(100vh - 40vh);
+  top: calc(100vh - 50vh);
 }
 .circle-preview {
   height: 100px;
@@ -142,6 +147,30 @@ h2 {
 }
 .shape-hidden {
   display: none;
+}
+.btn-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.sub-btn {
+  color: black;
+  border: 2px solid black;
+  background-color: white;
+  padding: 4px 10px 4px 10px;
+  margin-top: 10px;
+}
+
+.sub-btn:active {
+  background-color: black;
+  color: white;
+}
+.sub-btn:hover {
+  cursor: pointer;
+}
+.sub-btn:last-child {
+  margin-left: 10px;
 }
 
 @keyframes goup {
