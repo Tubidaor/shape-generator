@@ -200,6 +200,7 @@ function risingShapes(shibeImgs) {
       const radius = ["50%", "0px"]
       return radius[Math.floor(Math.random() * 2)]
     }
+    
 
     this.element = element;
     this.speed = speed;
@@ -262,6 +263,23 @@ function risingShapes(shibeImgs) {
     // using some trigonometry to determine our x and y position
     this.counter += this.speed / 5000;
     // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+    if(this.yPos < 50) {
+      this.speed = 5
+      
+    } else {
+      if(this.yPos > 50) {
+        this.speed = 100
+      }
+    }
+
+    if(this.yPos > 400 && this.yPos < 500) {
+      this.makeAppear()
+    }
+    if(this.yPos < 50 && this.yPos > -100) {
+      this.makeDisapper()
+    }
+    
+  
     
     this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
     // this.yPos -= Math.sin(this.counter)
@@ -271,17 +289,72 @@ function risingShapes(shibeImgs) {
     setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
 
     // if snowflake goes below the browser window, move it back to the top
-    if (this.yPos < -2000) {
+    if (this.yPos < -100) {
       this.yPos = browserHeight;
     }
     
   }
+
+  Circle.prototype.makeAppear = function () {
+    // let box = document.getElementById('circle-square')
+    // btn = document.querySelector('button');
+    console.log('make appear')
+    let box = this.element
+
+// btn.addEventListener('click', function () {
+  // if(this.yPos < 400) {
+    // console.log('y is trigerred')
+  if (box.classList.contains('hidden')) {
+    box.classList.remove('hidden');
+    box.classList.remove('visuallyhidden')
+    setTimeout(function () {
+      box.classList.remove('visuallyhidden');
+    }, 20);
+  // } else {
+  //   box.classList.add('visuallyhidden');    
+  //   box.addEventListener('transitionend', function(e) {
+  //     box.classList.add('hidden');
+  //   }, {
+  //     capture: false,
+  //     once: true,
+  //     passive: false
+  //   });
+  // }
+}
+  
+// }, false);
+  }
+
+  Circle.prototype.makeDisapper = function () {
+    let box = this.element
+    if (!box.classList.contains('hidden')) {
+      box.classList.add('visuallyhidden');    
+      box.addEventListener('transitionend', function(e) {
+        box.classList.add('hidden');
+      }, {
+        capture: false,
+        once: true,
+        passive: false
+      });
+    }
+  }
+  
   Triangle.prototype.update = function () {
     // using some trigonometry to determine our x and y position
     this.counter += this.speed / 5000;
     // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+
+    if(this.yPos < 50) {
+      this.speed = 5
+    } else {
+      if(this.yPos > 50) {
+        this.speed = 100
+      }
+    }
     
+   
     this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
+    // console.log(this.yPos)
     // this.yPos -= Math.sin(this.counter)
     // this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
 
@@ -289,14 +362,19 @@ function risingShapes(shibeImgs) {
     setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
 
     // if snowflake goes below the browser window, move it back to the top
-    if (this.yPos < -2000) {
+    if (this.yPos < -50) {
       this.yPos = browserHeight;
     }
     
   }
 
   function setTransform(xPos, yPos, scale, el) {
-    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+    // if(yPos < 50) {
+    //   yPos = yPos + 40
+    // }         
+    // el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+    el.style.transform = `translate(${xPos}px, ${yPos}px)`
+    // el.style.animation = `goup 5s infinite`
   }
 
   function generateShapes() {
@@ -324,10 +402,12 @@ function risingShapes(shibeImgs) {
       var circleClone = originalCircle.cloneNode(true);
       circleContainer.appendChild(circleClone);
 
+      // circleClone.style.display = "block"
+
       // set our snowflake's initial position and related properties
       var initialXPos = getPosition(50, browserWidth);
-      // var initialYPos = getPosition(50, browserHeight);
-      var initialYPos = 647
+      var initialYPos = getPosition(50, browserHeight);
+      // var initialYPos = 647
       // var speed = 5 + Math.random() * 40;
       let speed = 100
       let initialDelay = `${timing}s`

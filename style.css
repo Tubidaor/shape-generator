@@ -2,9 +2,9 @@
 * {
   box-sizing: border-box;
 }
-.main {
-  /* background-color: aliceblue; */
-}
+/* .main {
+  background-color: aliceblue;
+} */
 /* .shape-gen-con {
   height: 60vh;
 } */
@@ -26,27 +26,41 @@
   margin-right: auto;
 }
 
-.circle {
-  position: relative;
-  user-select: none;
-  z-index: 1000;
-  pointer-events: none;
-  /* border-radius: 50%; */
-  animation-delay: 2s;
-}
-.square {
+
+.circle-square{
   position: fixed;
   user-select: none;
   z-index: 1000;
   pointer-events: none;
+  /* border-radius: 50%; */
+  /* animation-delay: 2s; */
+  /* transition: all 1s linear; */
+  /* display: none; */
+  opacity: 1;
+  transition: opacity 1s ease-out
 }
-.spin {
-  animation: spin 5s infinite;
+/* #circle-square {
+  transition: all 1s linear;
+
+} */
+.hidden {
+  display: none;
 }
+
+.visuallyhidden {
+  opacity: 0;
+}
+/* .square {
+  position: fixed;
+  user-select: none;
+  z-index: 1000;
+  pointer-events: none;
+} */
+
 .triangle {
   height: 70px;
   width: 70px;
-  position: relative;
+  position: fixed;
   user-select: none;
   /* z-index: 1000; */
   pointer-events: none;
@@ -62,33 +76,7 @@
     clip-path: polygon(50% 10%, 8% 85%, 92% 85%);
     background-color: white;
 }
-/* .triangle-left {
-  height: 0px;
-  width: 40px;
-  border-bottom: 10px solid green;
-  transform: rotate(-45deg);
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  position: absolute;
-}
-.triangle-right {
-  height: 0px;
-  width: 40px;
-  border-bottom: 10px solid green;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  transform: rotate(45deg);
-  position: absolute;
-}
-.triangle-bottom {
-  height: 0px;
-  width: 40px;
-  border-bottom: 10px solid green;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  position: absolute;
 
-} */
 @keyframes goup {
   0% {left:0px; top: 60vh;}
   90% {left:0px; top: 0vh }
