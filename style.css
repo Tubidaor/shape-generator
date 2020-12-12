@@ -76,6 +76,42 @@
     clip-path: polygon(50% 10%, 8% 85%, 92% 85%);
     background-color: white;
 }
+h1 {
+  font-size: 1rem;
+}
+h2 {
+  font-size: .87rem;
+}
+.shape-form {
+  position: absolute;
+  height: 40vh;
+  left: 0;
+  top: calc(100vh - 40vh);
+}
+.select-color-con {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: .87rem;
+}
+.input-con {
+  display: flex;
+  align-items: center;
+  /* align-self: baseline; */
+}
+.input-orange {
+  font-size: .87rem;
+}
+#orange-label {
+  color: orange;
+}
+
+#blue-label, #green-label {
+  color: black;
+}
+
+
+
 
 @keyframes goup {
   0% {left:0px; top: 60vh;}

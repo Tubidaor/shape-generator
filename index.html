@@ -16,12 +16,29 @@
   <body>
     <main class="main">
       <div class="shape-gen-con" id="shape-gen-wrapper">
-
         <div class="circle-square hidden" id="circle-square"></div>
         <div class="triangle"></div>
-
-
       </div>
+      <form class="shape-form">
+        <header>
+          <h1>Generate a Shibe</h1>
+        </header>
+        <legend>Use the controls below to generate a shape.</legend>
+        <div class="select-color-con">
+          <header>
+            <h2>Select color:</h2>
+          </header>
+          <div class="input-con">
+            <input type="radio" id="orange-input" name="color" value="orange" checked="checked"><label htmlFor="orange-input" id="orange-label">Orange</label>
+          </div>
+          <div class="input-con">
+            <input type="radio" id="blue-input" name="color" value="blue" checked=""><label htmlFor="blue-input" id="blue-label">Blue</label>
+          </div>
+          <div class="input-con">
+            <input type="radio" id="green-input" name="color" value="green" checked=""><label htmlFor="green-input" id="green-label">Green</label>
+          </div>
+        </div>
+      </form>
     </main>
     <script src="index.js"></script>
     <!-- <script src="floating-shibes.js"></script> -->

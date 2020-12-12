@@ -576,3 +576,50 @@ function risingShapes(shibeImgs) {
     resetPosition = true;
   }
 }
+
+function inputSelect() {
+  console.log("input running")
+  const orangeLabel = document.getElementById('orange-label')
+  const blueLabel = document.getElementById('blue-label')
+  const greenLabel = document.getElementById('green-label')
+  const colors = [orangeLabel,blueLabel,greenLabel]
+  const inputColors = document.getElementsByName('colors')
+
+  $(document).ready(function(){
+    console.log('input running two')
+    $("input[name=color]").on("click", function() {
+      console.log($("input:checked").val())
+      if($("input:checked").val() === "orange") {
+        orangeLabel.style.color = "orange"
+        blueLabel.style.color = "black"
+        greenLabel.style.color = "black"
+      }
+      if($("input:checked").val() === "blue") {
+        orangeLabel.style.color = "black"
+        blueLabel.style.color = "blue"
+        greenLabel.style.color = "black"
+      }
+      if($("input:checked").val() === "green") {
+        orangeLabel.style.color = "black"
+        blueLabel.style.color = "black"
+        greenLabel.style.color = "green"
+      }
+
+
+
+
+
+
+    })
+
+    // $("#orange-input").on( "change", function() {
+    //   if(orangeLabel.style.color === "") {
+    //     console.log("changingcplor")
+    //     orangeLabel.style.color = "orange"
+    //   } else {
+    //     orangeLabel.style.color = "black"
+    //   }
+    // });
+  });
+}
+$(inputSelect())
