@@ -584,6 +584,7 @@ function inputSelectColor() {
   const greenLabel = document.getElementById('green-label')
   const circleBorder = document.getElementById('circle-preview')
   const squareBorder = document.getElementById('square-preview')
+  const triangleBorder = document.getElementById('triangle-preview')
 
   $(document).ready(function(){
     console.log('input running two')
@@ -593,6 +594,7 @@ function inputSelectColor() {
         orangeLabel.style.color = "orange"
         circleBorder.style.border = "5px solid orange"
         squareBorder.style.border = "5px solid orange"
+        triangleBorder.style.backgroundColor = "orange"
         blueLabel.style.color = "black"
         greenLabel.style.color = "black"
       }
@@ -601,6 +603,7 @@ function inputSelectColor() {
         blueLabel.style.color = "blue"
         circleBorder.style.border = "5px solid blue"
         squareBorder.style.border = "5px solid blue"
+        triangleBorder.style.backgroundColor = "blue"
         greenLabel.style.color = "black"
       }
       if($("input[name=color]:checked").val() === "green") {
@@ -609,6 +612,7 @@ function inputSelectColor() {
         greenLabel.style.color = "green"
         circleBorder.style.border = "5px solid green"
         squareBorder.style.border = "5px solid green"
+        triangleBorder.style.backgroundColor = "green"
       }
     })
   });
@@ -644,6 +648,28 @@ function inputSelectShape() {
     })
   });
 }
+
+function fillWithShibe() {
+  const shibeImg = document.getElementsByClassName("img-bk")
+  const yesNo = $("input[name=yes-no]")
+
+  $(document).ready(function(){
+    console.log('input running two')
+    yesNo.on("click", function() {
+        if(yesNo[0].value === "yes" && yesNo[0].checked) {
+          for(let i = 0; i < shibeImg.length; i++) {
+            shibeImg[i].style.backgroundImage = `url(${shibeImgs[Math.floor(Math.random() * shibeImgs.length)]})`
+          }
+        }
+        if(yesNo[1].value === "no" && !yesNo[0].checked) {
+          for(let i = 0; i < shibeImg.length; i++) {
+            shibeImg[i].style.backgroundImage = "none"
+          }
+        } 
+    })
+  });
+}
 $(inputSelectColor())
 $(inputSelectShape())
+$(fillWithShibe())
 

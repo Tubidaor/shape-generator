@@ -21,7 +21,7 @@
       </div>
       <form class="shape-form">
         <header>
-          <h1>Generate a Shibe</h1>
+          <h1>Shape Generator</h1>
         </header>
         <legend>Use the controls below to generate a shape.</legend>
         <div class="choices-con">
@@ -62,13 +62,13 @@
           <header>
             <h2>Fill with shibe:</h2>
           </header>
-          <div class="input-wrapper">
+          <div class="input-wrapper yes-no">
 
             <div class="input-con">
-              <input type="radio" id="yes-input" name="shape" value="yes" checked="checked"><label htmlFor="yes-input" id="yes-label">Yes</label>
+              <input type="radio" id="yes-input" name="yes-no" value="yes" checked="checked"><label htmlFor="yes-input" id="yes-label">Yes</label>
             </div>
-            <div class="input-con">
-              <input type="radio" id="no-input" name="shape" value="no" checked=""><label htmlFor="no-input" id="no-label">No</label>
+            <div class="input-con no-input">
+              <input type="radio" id="no-input" name="yes-no" value="no" checked=""><label htmlFor="no-input" id="no-label">No</label>
             </div>
           </div>
         </div>
@@ -78,14 +78,14 @@
         </div>
       </form>
       <div class="shape-preview">
-        <div class="circle-preview shape-hidden" id="circle-preview">
-          <img class="img-preview">
+        <div class="circle-preview shape-hidden img-bk" id="circle-preview">
+          <!-- <img class="img-preview circle-o"> -->
         </div>
-        <div class="square-preview" id="square-preview">
-          <img class="img-preview">
+        <div class="square-preview img-bk" id="square-preview">
+          <!-- <img class="img-preview"> -->
         </div>
         <div class="triangle-preview shape-hidden" id="triangle-preview">
-          <img class="img-preview">
+            <div class="triangle-inner img-bk"> </div>
         </div>
       </div>
     </main>
