@@ -151,8 +151,8 @@ function risingShapes(shibeImgs) {
   console.log('thisis running')
   let shibes = []
 
-  let browserWidth
-  let browserHeight
+  let browserWidth = document.documentElement.clientWidth;
+  let  browserHeight = document.documentElement.clientHeight;
 
   let timing = 0
 
@@ -189,7 +189,7 @@ function risingShapes(shibeImgs) {
   }
   setup()
 
-  function Circle(element, speed, xPos, yPos, delay, image) {
+  function Circle(element, speed, xPos, yPos, delay, image, startingPos) {
     // set initial snowflake properties
     function returnColor(){
       const colors = ["green", "blue", "orange"]
@@ -206,6 +206,7 @@ function risingShapes(shibeImgs) {
     this.speed = speed;
     this.xPos = xPos;
     this.yPos = yPos;
+    this.startingPos = startingPos;
     this.scale = 1;
     this.delay = delay
     this.image = image
@@ -224,7 +225,7 @@ function risingShapes(shibeImgs) {
     this.sign = Math.random() < 0.5 ? 1 : -1;
 
   }
-  function Triangle(element, speed, xPos, yPos, delay, image) {
+  function Triangle(element, speed, xPos, yPos, delay, image, startingPos) {
     // set initial snowflake properties
     function returnColor(){
       const colors = ["green", "blue", "orange"]
@@ -240,6 +241,7 @@ function risingShapes(shibeImgs) {
     this.speed = speed;
     this.xPos = xPos;
     this.yPos = yPos;
+    this.startingPos = startingPos
     this.scale = 1;
     this.delay = delay
     this.image = image
@@ -272,7 +274,7 @@ function risingShapes(shibeImgs) {
       }
     }
 
-    if(this.yPos > 400 && this.yPos < 500) {
+    if(this.yPos > ((browserHeight/2) - 50) && this.yPos < (browserHeight/2)) {
       this.makeAppear()
     }
     if(this.yPos < 50 && this.yPos > -100) {
@@ -290,7 +292,8 @@ function risingShapes(shibeImgs) {
 
     // if snowflake goes below the browser window, move it back to the top
     if (this.yPos < -100) {
-      this.yPos = browserHeight;
+      console.log(this.startingPos)
+      this.yPos = this.startingPos;
     }
     
   }
@@ -390,13 +393,15 @@ function risingShapes(shibeImgs) {
     circleContainer.style.display = "block";
 
     // get our browser's size
-    browserWidth = document.documentElement.clientWidth;
-    browserHeight = document.documentElement.clientHeight;
+    // browserWidth = document.documentElement.clientWidth;
+    // browserHeight = document.documentElement.clientHeight;
     console.log("height", browserHeight)
+    let startingOffset = -50
 
     // create each individual snowflake
     for (var i = 0; i < numberOfShapes; i++) {
       timing = timing + 1
+      startingOffset = startingOffset + 150
       if(i % 2 === 0) {
       // clone our original snowflake and add it to snowflakeContainer
       var circleClone = originalCircle.cloneNode(true);
@@ -405,14 +410,17 @@ function risingShapes(shibeImgs) {
       // circleClone.style.display = "block"
 
       // set our snowflake's initial position and related properties
-      var initialXPos = getPosition(50, browserWidth);
-      var initialYPos = getPosition(50, browserHeight);
+      // var initialXPos = getPosition(50, browserWidth);
+      let initialXPos = browserWidth / 2
+      var initialYPos = getPosition(startingOffset, browserHeight);
       // var initialYPos = 647
       // var speed = 5 + Math.random() * 40;
       let speed = 100
       let initialDelay = `${timing}s`
       console.log(timing)
       let shibeImage = shibeImgs[i]
+      console.log("initialYPos", initialYPos)
+      
 
       // create our Snowflake object
       var circleObject = new Circle(circleClone,
@@ -420,7 +428,8 @@ function risingShapes(shibeImgs) {
         initialXPos,
         initialYPos,
         initialDelay,
-        shibeImage
+        shibeImage,
+        initialYPos
       );
       shibes.push(circleObject);
     } else {
@@ -461,55 +470,8 @@ function risingShapes(shibeImgs) {
     moveShapes();
   }
 
-  // function generateTriangle() {
-
-  //   // get our snowflake element from the DOM and store it
-  //   var originalTriangle = document.querySelector(".triangle");
-
-  //   // access our snowflake element's parent container
-  //   var triangleContainer = originalTriangle.parentNode;
-  //   triangleContainer.style.display = "block";
-
-  //   // get our browser's size
-  //   browserWidth = document.documentElement.clientWidth;
-  //   browserHeight = document.documentElement.clientHeight;
-  //   console.log("height", browserHeight)
-
-  //   // create each individual snowflake
-  //   for (var i = 0; i < numberOfShapes; i++) {
-  //     timing = timing + 1
-
-  //     // clone our original snowflake and add it to snowflakeContainer
-  //     var triangleClone = originalTriangle.cloneNode(true);
-  //     triangleContainer.appendChild(triangleClone);
-
-  //     // set our snowflake's initial position and related properties
-  //     var initialXPos = getPosition(50, browserWidth);
-  //     // var initialYPos = getPosition(50, browserHeight);
-  //     var initialYPos = 647
-  //     // var speed = 5 + Math.random() * 40;
-  //     let speed = 100
-  //     let initialDelay = `${timing}s`
-  //     console.log(timing)
-  //     // let shibeImage = shibeImgs[i]
-
-  //     // create our Snowflake object
-  //     var triangleObject = new Triangle(triangleClone,
-  //       speed,
-  //       initialXPos,
-  //       initialYPos,
-  //       initialDelay,
-  //     );
-  //     shibes.push(triangleObject);
-  //   }
-
-  //   triangleContainer.removeChild(originalTriangle);
-
-  //   moveTriangles();
-  // }
-
-
   function moveShapes() {
+    let startingOffset = -50
 
     if (enableAnimations) {
       for (var i = 0; i < shibes.length; i++) {
@@ -524,10 +486,11 @@ function risingShapes(shibeImgs) {
       browserHeight = document.documentElement.clientHeight;
 
       for (var i = 0; i < shibes.length; i++) {
+        startingOffset = startingOffset + 150
         var shape = shibes[i];
 
-        shape.xPos = getPosition(50, browserWidth);
-        shape.yPos = getPosition(50, browserHeight);
+        shape.xPos = getPosition(100, browserWidth);
+        shape.yPos = getPosition(startingOffset, browserHeight);
       }
 
       resetPosition = false;
@@ -536,36 +499,10 @@ function risingShapes(shibeImgs) {
     requestAnimationFrame(moveShapes);
   }
 
-  // function moveTriangles() {
-
-  //   if (enableAnimations) {
-  //     for (var i = 0; i < shibes.length; i++) {
-  //       var triangle = shibes[i];
-  //       triangle.update();
-  //     }      
-  //   }
-
-  //   // Reset the position of all the snowflakes to a new value
-  //   if (resetPosition) {
-  //     browserWidth = document.documentElement.clientWidth;
-  //     browserHeight = document.documentElement.clientHeight;
-
-  //     for (var i = 0; i < shibes.length; i++) {
-  //       var circle = shibes[i];
-
-  //       circle.xPos = getPosition(50, browserWidth);
-  //       circle.yPos = getPosition(50, browserHeight);
-  //     }
-
-  //     resetPosition = false;
-  //   }
-
-  //   requestAnimationFrame(moveTriangles);
-  // }
-
   function getPosition(offset, size) {
-    const position = Math.round(-1 * offset + Math.random() * (size + 2 * offset))
-    // console.log(position)
+    // const position = Math.round(-1 * offset + Math.random() * (size + 2 * offset))
+    const position = size - (size * .5) + offset
+    console.log(size, position)
     return position;
   }
 
