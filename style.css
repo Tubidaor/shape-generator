@@ -66,6 +66,8 @@
   pointer-events: none;
   clip-path: polygon(50% 0%, 0 90%, 100% 90%);
   background-color: blue;
+  opacity: 1;
+  transition: opacity 1s ease-out
 }
 .triangle::before {
     content: "";

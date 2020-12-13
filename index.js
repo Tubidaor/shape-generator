@@ -148,7 +148,6 @@ function trianglehit(rectone, recttwo){
 
 function risingShapes(shibeImgs) {
 
-  console.log('thisis running')
   let shibes = []
 
   let browserWidth = document.documentElement.clientWidth;
@@ -177,7 +176,6 @@ function risingShapes(shibeImgs) {
 
   function setup() {
     if (enableAnimations) {
-      console.log(document.readyState)
       // if(document.readyState === "complete") {
       //   console.log('ready')
       //   setTimeout(generateCircle, 5000)
@@ -261,11 +259,10 @@ function risingShapes(shibeImgs) {
 
   }
 
-  Circle.prototype.update = function () {
+function update() {
     // using some trigonometry to determine our x and y position
-    this.counter += this.speed / 5000;
     // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
-    if(this.yPos < 50) {
+    if(this.yPos < 0) {
       this.speed = 5
       
     } else {
@@ -273,12 +270,13 @@ function risingShapes(shibeImgs) {
         this.speed = 100
       }
     }
+    this.counter += this.speed / 5000;
 
     if(this.yPos > ((browserHeight/2) - 50) && this.yPos < (browserHeight/2)) {
       this.makeAppear()
     }
-    if(this.yPos < 50 && this.yPos > -100) {
-      this.makeDisapper()
+    if(this.yPos < -100 && this.yPos > -200) {
+      this.makeDisappear()
     }
     
   
@@ -291,85 +289,101 @@ function risingShapes(shibeImgs) {
     setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
 
     // if snowflake goes below the browser window, move it back to the top
-    if (this.yPos < -100) {
-      console.log(this.startingPos)
+    if (this.yPos < -200) {
       this.yPos = this.startingPos;
     }
     
   }
-
-  Circle.prototype.makeAppear = function () {
-    // let box = document.getElementById('circle-square')
-    // btn = document.querySelector('button');
-    console.log('make appear')
+  function makeAppear() {
     let box = this.element
 
-// btn.addEventListener('click', function () {
-  // if(this.yPos < 400) {
-    // console.log('y is trigerred')
-  if (box.classList.contains('hidden')) {
-    box.classList.remove('hidden');
-    box.classList.remove('visuallyhidden')
-    setTimeout(function () {
-      box.classList.remove('visuallyhidden');
-    }, 20);
-  // } else {
-  //   box.classList.add('visuallyhidden');    
-  //   box.addEventListener('transitionend', function(e) {
-  //     box.classList.add('hidden');
-  //   }, {
-  //     capture: false,
-  //     once: true,
-  //     passive: false
-  //   });
-  // }
-}
-  
-// }, false);
+    if (box.classList.contains('hidden')) {
+      box.classList.remove('hidden');
+      // box.classList.remove('visuallyhidden')
+      setTimeout(function() {
+        box.classList.remove('visuallyhidden');
+      }, 50);
+    }
   }
-
-  Circle.prototype.makeDisapper = function () {
+  function makeDisappear () {
     let box = this.element
     if (!box.classList.contains('hidden')) {
       box.classList.add('visuallyhidden');    
-      box.addEventListener('transitionend', function(e) {
+      // box.addEventListener('transitionend', () => {
+      //   // console.log('added hidden')
+      setTimeout(function() {
+
         box.classList.add('hidden');
-      }, {
-        capture: false,
-        once: true,
-        passive: false
-      });
+      },50)
+      // }, {
+      //   capture: false,
+      //   once: true,
+      //   passive: false
+      // });
     }
   }
-  
-  Triangle.prototype.update = function () {
-    // using some trigonometry to determine our x and y position
-    this.counter += this.speed / 5000;
-    // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+  Circle.prototype.makeAppear = makeAppear
+  Circle.prototype.makeDisappear = makeDisappear
+  Circle.prototype.update = update
+  Triangle.prototype.makeAppear = makeAppear
+  Triangle.prototype.makeDisappear = makeDisappear
+  Triangle.prototype.update = update
 
-    if(this.yPos < 50) {
-      this.speed = 5
-    } else {
-      if(this.yPos > 50) {
-        this.speed = 100
-      }
-    }
+  // Circle.prototype.makeAppear = function () {
+
+  //   let box = this.element
+
+  //   if (box.classList.contains('hidden')) {
+  //     box.classList.remove('hidden');
+  //     box.classList.remove('visuallyhidden')
+  //     setTimeout(function () {
+  //       box.classList.remove('visuallyhidden');
+  //     }, 20);
+  //   }
+  // }
+
+  // Circle.prototype.makeDisapper = function () {
+  //   let box = this.element
+  //   if (!box.classList.contains('hidden')) {
+  //     box.classList.add('visuallyhidden');    
+  //     box.addEventListener('transitionend', function(e) {
+  //       box.classList.add('hidden');
+  //     }, {
+  //       capture: false,
+  //       once: true,
+  //       passive: false
+  //     });
+  //   }
+  // }
+  
+  // Triangle.prototype.update = function () {
+  //   // using some trigonometry to determine our x and y position
+  //   this.counter += this.speed / 5000;
+  //   // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+
+  //   if(this.yPos < 50) {
+  //     this.speed = 5
+  //   } else {
+  //     if(this.yPos > 50) {
+  //       this.speed = 100
+  //     }
+  //   }
     
    
-    this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
-    // console.log(this.yPos)
-    // this.yPos -= Math.sin(this.counter)
-    // this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
+  //   this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
+  //   // console.log(this.yPos)
+  //   // this.yPos -= Math.sin(this.counter)
+  //   // this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
 
-    // setting our snowflake's position
-    setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
+  //   // setting our snowflake's position
+  //   setTransform(Math.round(this.xPos), Math.round(this.yPos), this.scale, this.element);
 
-    // if snowflake goes below the browser window, move it back to the top
-    if (this.yPos < -50) {
-      this.yPos = browserHeight;
-    }
+  //   // if snowflake goes below the browser window, move it back to the top
+  //   if (this.yPos < -50) {
+  //     this.yPos = browserHeight;
+  //   }
     
-  }
+  // }
 
   function setTransform(xPos, yPos, scale, el) {
     // if(yPos < 50) {
@@ -395,7 +409,6 @@ function risingShapes(shibeImgs) {
     // get our browser's size
     // browserWidth = document.documentElement.clientWidth;
     // browserHeight = document.documentElement.clientHeight;
-    console.log("height", browserHeight)
     let startingOffset = -50
 
     // create each individual snowflake
@@ -417,9 +430,7 @@ function risingShapes(shibeImgs) {
       // var speed = 5 + Math.random() * 40;
       let speed = 100
       let initialDelay = `${timing}s`
-      console.log(timing)
       let shibeImage = shibeImgs[i]
-      console.log("initialYPos", initialYPos)
       
 
       // create our Snowflake object
@@ -444,7 +455,6 @@ function risingShapes(shibeImgs) {
        // var speed = 5 + Math.random() * 40;
        let speed = 100
        let initialDelay = `${timing}s`
-       console.log(timing)
        // let shibeImage = shibeImgs[i]
  
        // create our Snowflake object
@@ -491,8 +501,8 @@ function risingShapes(shibeImgs) {
         startingOffset = startingOffset + 150
         var shape = shibes[i];
 
-        shape.xPos = getPosition(100, browserWidth);
-        shape.yPos = getPosition(startingOffset, browserHeight);
+        shape.xPos = setPositionX(50, browserWidth);
+        shape.yPos = setPositionY(startingOffset, browserHeight);
       }
 
       resetPosition = false;
@@ -504,7 +514,6 @@ function risingShapes(shibeImgs) {
   function setPositionY(offset, size) {
     // const position = Math.round(-1 * offset + Math.random() * (size + 2 * offset))
     const position = size - (size * .5) + offset
-    console.log(size, position)
     return position;
   }
   function setPositionX(offset, size) {
