@@ -410,9 +410,9 @@ function risingShapes(shibeImgs) {
       // circleClone.style.display = "block"
 
       // set our snowflake's initial position and related properties
-      // var initialXPos = getPosition(50, browserWidth);
-      let initialXPos = browserWidth / 2
-      var initialYPos = getPosition(startingOffset, browserHeight);
+      var initialXPos = setPositionX(50, browserWidth);
+      // let initialXPos = browserWidth / 2
+      var initialYPos = setPositionY(startingOffset, browserHeight);
       // var initialYPos = 647
       // var speed = 5 + Math.random() * 40;
       let speed = 100
@@ -438,9 +438,9 @@ function risingShapes(shibeImgs) {
        triangleContainer.appendChild(triangleClone);
  
        // set our snowflake's initial position and related properties
-       var initialXPos = getPosition(50, browserWidth);
-       // var initialYPos = getPosition(50, browserHeight);
-       var initialYPos = 647
+       var initialXPos = setPositionX(50, browserWidth);
+       var initialYPos = setPositionY(startingOffset, browserHeight);
+      //  var initialYPos = 647
        // var speed = 5 + Math.random() * 40;
        let speed = 100
        let initialDelay = `${timing}s`
@@ -453,6 +453,8 @@ function risingShapes(shibeImgs) {
          initialXPos,
          initialYPos,
          initialDelay,
+         false,
+         initialYPos
        );
        shibes.push(triangleObject);
 
@@ -499,11 +501,15 @@ function risingShapes(shibeImgs) {
     requestAnimationFrame(moveShapes);
   }
 
-  function getPosition(offset, size) {
+  function setPositionY(offset, size) {
     // const position = Math.round(-1 * offset + Math.random() * (size + 2 * offset))
     const position = size - (size * .5) + offset
     console.log(size, position)
     return position;
+  }
+  function setPositionX(offset, size) {
+    const position = size - (Math.floor(Math.random() * size) - 50) + offset
+    return position
   }
 
   //
