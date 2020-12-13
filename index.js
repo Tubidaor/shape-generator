@@ -578,58 +578,65 @@ function risingShapes(shibeImgs) {
 }
 
 function inputSelectColor() {
-  console.log("input running")
-  const orangeLabel = document.getElementById('orange-label')
-  const blueLabel = document.getElementById('blue-label')
-  const greenLabel = document.getElementById('green-label')
   const circleBorder = document.getElementById('circle-preview')
   const squareBorder = document.getElementById('square-preview')
   const triangleBorder = document.getElementById('triangle-preview')
 
-  $(document).ready(function(){
-    console.log('input running two')
-    $("input[name=color]").on("click", function() {
-      console.log($("input:checked").val())
+
       if($("input[name=color]:checked").val() === "orange") {
-        orangeLabel.style.color = "orange"
         circleBorder.style.border = "5px solid orange"
         squareBorder.style.border = "5px solid orange"
         triangleBorder.style.backgroundColor = "orange"
+
+      }
+      if($("input[name=color]:checked").val() === "blue") {
+
+        circleBorder.style.border = "5px solid blue"
+        squareBorder.style.border = "5px solid blue"
+        triangleBorder.style.backgroundColor = "blue"
+      }
+      if($("input[name=color]:checked").val() === "green") {
+
+        circleBorder.style.border = "5px solid green"
+        squareBorder.style.border = "5px solid green"
+        triangleBorder.style.backgroundColor = "green"
+      }
+}
+function labelColorChange() {
+  const orangeLabel = document.getElementById('orange-label')
+  const blueLabel = document.getElementById('blue-label')
+  const greenLabel = document.getElementById('green-label')
+
+  $(document).ready(function() {
+    $('input[name=color]').on("click", function() {
+      if($("input[name=color]:checked").val() === "orange") {
+        orangeLabel.style.color = "orange"
+
         blueLabel.style.color = "black"
         greenLabel.style.color = "black"
       }
       if($("input[name=color]:checked").val() === "blue") {
         orangeLabel.style.color = "black"
         blueLabel.style.color = "blue"
-        circleBorder.style.border = "5px solid blue"
-        squareBorder.style.border = "5px solid blue"
-        triangleBorder.style.backgroundColor = "blue"
         greenLabel.style.color = "black"
       }
       if($("input[name=color]:checked").val() === "green") {
         orangeLabel.style.color = "black"
         blueLabel.style.color = "black"
         greenLabel.style.color = "green"
-        circleBorder.style.border = "5px solid green"
-        squareBorder.style.border = "5px solid green"
-        triangleBorder.style.backgroundColor = "green"
+
       }
     })
-  });
+    })
 }
 function inputSelectShape() {
-  // const orangeLabel = document.getElementById('orange-label')
-  // const blueLabel = document.getElementById('blue-label')
-  // const greenLabel = document.getElementById('green-label')
+
   const circle = document.getElementById('circle-preview')
   const square = document.getElementById('square-preview')
   const triangle = document.getElementById('triangle-preview')
 
 
-  $(document).ready(function(){
-    console.log('input running two')
-    $("input[name=shape]").on("click", function() {
-      console.log($("input[name=shape]:checked").val())
+
       if($("input[name=shape]:checked").val() === "square") {
         square.classList.remove("shape-hidden")
         circle.classList.add("shape-hidden")
@@ -645,17 +652,14 @@ function inputSelectShape() {
         circle.classList.remove("shape-hidden")
         triangle.classList.add("shape-hidden")
       }
-    })
-  });
+
 }
 
 function fillWithShibe() {
   const shibeImg = document.getElementsByClassName("img-bk")
   const yesNo = $("input[name=yes-no]")
 
-  $(document).ready(function(){
-    console.log('input running two')
-    yesNo.on("click", function() {
+
         if(yesNo[0].value === "yes" && yesNo[0].checked) {
           for(let i = 0; i < shibeImg.length; i++) {
             shibeImg[i].style.backgroundImage = `url(${shibeImgs[Math.floor(Math.random() * shibeImgs.length)]})`
@@ -666,8 +670,7 @@ function fillWithShibe() {
             shibeImg[i].style.backgroundImage = "none"
           }
         } 
-    })
-  });
+
 }
 
 function generateShibeShape() {
@@ -676,8 +679,28 @@ function generateShibeShape() {
   $(document).ready(function() {
     $('#generate').on("click", function(event) {
       event.preventDefault()
-      // fillWithShibe()
+      inputSelectColor()
+      inputSelectShape()
+      fillWithShibe()
       showShape.style.display = "block"
+    })
+  })
+}
+function clear() {
+  const yesNo = $("input[name=yes-no]")
+  const color = $("input[name=color]")
+  const shape = $("input[name=shape]")
+  const showShape = document.getElementById('shape-preview')
+  const orangeLabel = document.getElementById('orange-label')
+
+  $(document).ready(function() {
+    $("#clear").on("click", function(event) {
+      event.preventDefault()
+      color[0].checked = true
+      yesNo[0].checked = true
+      shape[0].checked = true
+      orangeLabel.style.color = "orange"
+      showShape.style.display = "none"
     })
   })
 }
@@ -689,10 +712,10 @@ function generateDefaultShibeImgs() {
   }
 
 }
-$(inputSelectColor())
-$(inputSelectShape())
-$(fillWithShibe())
+
 $(generateDefaultShibeImgs())
 $(generateShibeShape())
+$(labelColorChange())
+$(clear())
 
 
