@@ -59,65 +59,115 @@ $(displayImages())
 
 
 //need to make css of animation, then apply the three different styles, then once it hits, apply the other class to it.
+$.fn.overlaps = function(obj) {
+  var elems = [];
+  this.each(function() {
+      var bounds = $(this).offset();
+      bounds.right = bounds.left + $(this).outerWidth();
+      bounds.bottom = bounds.top + $(this).outerHeight();
+
+      var compare = $(obj).offset();
+      compare.right = compare.left + $(obj).outerWidth();
+      compare.bottom = compare.top + $(obj).outerHeight();
+
+      var isOver = (!(compare.right < bounds.left ||
+          compare.left > bounds.right ||
+          compare.bottom < bounds.top ||
+          compare.top > bounds.bottom));
+
+      if (isOver) {elems.push(this);}
+  });
+
+  elems.join('');
+  return elems;
+};
 
 // 
-function recthit(rectone, recttwo){
+// function recthit(rectone, recttwo){
     
-  var r1 = $(rectone);
-  var r2 = $(recttwo);
+//   var r1 = $(rectone);
+//   var r2 = $(recttwo);
   
-  var r1x = r1.offset().left; // 10
-  var r1w = r1.outerWidth(); // 50
-  var r1y = r1.offset().top; // 20
-  var r1h = r1.outerHeight(); // 50
+//   var r1x = r1.offset().left; // 10
+//   var r1w = r1.outerWidth(); // 50
+//   var r1y = r1.offset().top; // 20
+//   var r1h = r1.outerHeight(); // 50
   
-  var r2x = r2.offset().left; // 70
-  var r2w = r2.outerWidth(); // 50
-  var r2y = r2.offset().top; // 20
-  var r2h = r2.outerHeight(); // 50
+//   var r2x = r2.offset().left; // 70
+//   var r2w = r2.outerWidth(); // 50
+//   var r2y = r2.offset().top; // 20
+//   var r2h = r2.outerHeight(); // 50
 
-  // console.log('circle r1', r1x, r1y)
-  // console.log('square r2', r2x, r2y)
+//   // console.log('circle r1', r1x, r1y)
+//   // console.log('square r2', r2x, r2y)
   
-  if(r1y+r1h < r2y ||
-    r1y > r2y+r2h ||
-    r1x > r2x+r2w ||
-    r1x+r1w < r2x) {
-      return false;
-  }else{
-      return true;   
-  }
+//   if(r1y+r1h < r2y ||
+//     r1y > r2y+r2h ||
+//     r1x > r2x+r2w ||
+//     r1x+r1w < r2x) {
+//       return false;
+//   }else{
+//       return true;   
+//   }
   
-}//end function 
+// }//end function 
 
-function trianglehit(rectone, recttwo){
+// function trianglehit(){
     
-  var r1 = $(rectone);
-  var r2 = $(recttwo);
+//   var r1 = this.element;
+//   var r2 = $("circle-square");
   
-  var r1x = r1.offset().left; // 10
-  var r1w = r1.width(); // 50
-  var r1y = r1.offset().top; // 20
-  var r1h = r1.height(); // 50
+//   var r1x = r1.offset().left; // 10
+//   var r1w = r1.width(); // 50
+//   var r1y = r1.offset().top; // 20
+//   var r1h = r1.height(); // 50
   
-  var r2x = r2.offset().left; // 70
-  var r2w = r2.width(); // 50
-  var r2y = r2.offset().top; // 20
-  var r2h = r2.height(); // 50
+//   var r2x = r2.offset().left; // 70
+//   var r2w = r2.width(); // 50
+//   var r2y = r2.offset().top; // 20
+//   var r2h = r2.height(); // 50
 
-  // console.log('circle r1', r1x, r1y)
-  // console.log('square r2', r2x, r2y)
+//   // console.log('circle r1', r1x, r1y)
+//   // console.log('square r2', r2x, r2y)
   
-  if(r1y+r1h < r2y ||
-    r1y > r2y+r2h ||
-    r1x > r2x+r2w ||
-    r1x+r1w < r2x) {
-      return false;
-  }else{
-      return true;   
-  }
+//   if(r1y+r1h < r2y ||
+//     r1y > r2y+r2h ||
+//     r1x > r2x+r2w ||
+//     r1x+r1w < r2x) {
+//       return false;
+//   }else{
+//       return true;   
+//   }
   
-}
+// }
+
+// function rotate(e) {
+
+// $('.circle-square').css({
+//   top: e.pageY,
+//   left: e.pageX
+// });
+
+// const element = this.element
+
+// element.each(function(){
+//   if(recthit('.circle-square',element){
+//     $(this).css({backgroundColor:'yellow'});
+//   } else {
+//     $(this).css({backgroundColor:'black'});
+//   }
+// });// end each
+// $('.triangle').each(function(){
+//   if(trianglehit('.circle-square',$(this))){
+//     $(this).css({backgroundColor:'yellow'});
+//   } else {
+//     $(this).css({backgroundColor:'black'});
+//   }
+// });// end each
+// }
+
+
+// });
 //end function 
 // $(document).mousemove(function(e) {
 
@@ -275,9 +325,14 @@ function update() {
     if(this.yPos > ((browserHeight/2) - 50) && this.yPos < (browserHeight/2)) {
       this.makeAppear()
     }
+    
     if(this.yPos < -100 && this.yPos > -200) {
       this.makeDisappear()
     }
+    if(this.element.classList.contains('triangle') && (this.yPos < 50 && this.yPos > 0)) {
+      this.collision()
+    }
+
     
   
     
@@ -292,6 +347,26 @@ function update() {
     if (this.yPos < -200) {
       this.yPos = this.startingPos;
     }
+    
+  }
+  function collision() {
+    // console.log('it collided')
+      let box = this.element
+      let area = $('.circle-square')
+      let area2 = $('.triangle')
+
+      let hitCircle = area.overlaps(box)
+      let hitTriangle = area2.overlaps(box)
+      // isOver? console.log(this.element): console.log("not over")
+      if(hitCircle.length) {
+        this.speed = 5
+        // console.log(isOver[0].height)
+      }
+      if(hitTriangle.length) {
+        this.speed = 5
+      }
+  
+      // $(box)[isOver.length ? 'addClass' : 'removeClass']('over');
     
   }
   function makeAppear() {
@@ -325,9 +400,12 @@ function update() {
   Circle.prototype.makeAppear = makeAppear
   Circle.prototype.makeDisappear = makeDisappear
   Circle.prototype.update = update
+  Circle.prototype.makeFall = addFallingEffect
   Triangle.prototype.makeAppear = makeAppear
   Triangle.prototype.makeDisappear = makeDisappear
   Triangle.prototype.update = update
+  Triangle.prototype.makeFall = addFallingEffect
+  Triangle.prototype.collision = collision
 
   // Circle.prototype.makeAppear = function () {
 
@@ -521,6 +599,10 @@ function update() {
     return position
   }
 
+  function addFallingEffect() {
+    const shape = this.element
+    shape.classList.add("falling")
+  }
   //
   // Trigger a reset of all the snowflakes' positions
   //
@@ -644,6 +726,9 @@ function clear() {
   const shape = $("input[name=shape]")
   const showShape = document.getElementById('shape-preview')
   const orangeLabel = document.getElementById('orange-label')
+  const greenLabel = document.getElementById('green-label')
+  const blueLabel = document.getElementById('blue-label')
+
 
   $(document).ready(function() {
     $("#clear").on("click", function(event) {
@@ -652,6 +737,8 @@ function clear() {
       yesNo[0].checked = true
       shape[0].checked = true
       orangeLabel.style.color = "orange"
+      greenLabel.style.color = "black"
+      blueLabel.style.color = "black"
       showShape.style.display = "none"
     })
   })
