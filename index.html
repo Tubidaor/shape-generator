@@ -51,10 +51,10 @@
               <input type="radio" id="square-input" name="shape" value="square" checked="checked"><label htmlFor="square-input" id="square-label">Square</label>
             </div>
             <div class="input-con">
-              <input type="radio" id="triangle-input" name="shape" value="triangle" checked=""><label htmlFor="triangle-input" id="triangle-label">Triangle</label>
+              <input type="radio" id="triangle-input" name="shape" value="triangle" checked="not checked"><label htmlFor="triangle-input" id="triangle-label">Triangle</label>
             </div>
             <div class="input-con">
-              <input type="radio" id="circle-input" name="shape" value="circle" checked=""><label htmlFor="circle-input" id="circle-label">Circle</label>
+              <input type="radio" id="circle-input" name="shape" value="circle" checked="not checked"><label htmlFor="circle-input" id="circle-label">Circle</label>
             </div>
           </div>
         </div>
@@ -73,11 +73,11 @@
           </div>
         </div>
         <div class="btn-con">
-          <button type="submit" class="sub-btn">Generate</button>
-          <button type="submit" class="sub-btn">Clear Screen</button>
+          <button type="submit" class="sub-btn" id="generate">Generate</button>
+          <button type="submit" class="sub-btn" id="clear">Clear Screen</button>
         </div>
       </form>
-      <div class="shape-preview">
+      <div class="shape-preview" id="shape-preview">
         <div class="circle-preview shape-hidden img-bk" id="circle-preview">
           <!-- <img class="img-preview circle-o"> -->
         </div>

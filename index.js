@@ -669,7 +669,30 @@ function fillWithShibe() {
     })
   });
 }
+
+function generateShibeShape() {
+  const showShape = document.getElementById('shape-preview')
+
+  $(document).ready(function() {
+    $('#generate').on("click", function(event) {
+      event.preventDefault()
+      // fillWithShibe()
+      showShape.style.display = "block"
+    })
+  })
+}
+function generateDefaultShibeImgs() {
+  const shibeImg = document.getElementsByClassName("img-bk")
+
+  for(let i = 0; i < shibeImg.length; i++) {
+    shibeImg[i].style.backgroundImage = `url(${shibeImgs[Math.floor(Math.random() * shibeImgs.length)]})`
+  }
+
+}
 $(inputSelectColor())
 $(inputSelectShape())
 $(fillWithShibe())
+$(generateDefaultShibeImgs())
+$(generateShibeShape())
+
 
