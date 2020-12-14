@@ -148,12 +148,12 @@ function risingShapes(shibeImgs) {
       this.makeDisappear()
     }
 
-    if(this.hit === false && this.yPos < 50) {
+    if(this.hit === false && this.yPos < 100) {
       const overlaps = this.overlaps(".circle-square")
-        if(overlaps.length) {
-          console.log(Object.keys(overlaps))
-          this.element.animate({"transform": `rotate(0deg) translateX(0px) rotate(0deg)`}, 2000, "linear")
-          this.element.animate({"transform": `rotate(-360deg) translateX(${overlaps[0].height}px) rotate(-360deg)`}, 2000, "linear")
+        if(overlaps.length > 1) {
+          // console.log(overlaps[0])
+          this.element.animate({"transform": `rotate(${this.rotation}deg) translateX(0px) rotate(${this.rotation}deg)`}, 2000, "linear")
+          this.element.animate({"transform": `rotate(${this.rotation - 360}deg) translateX(${Math.round($(overlaps[0]).height())}px) rotate(${this.rotation -360}deg)`}, 2000, "linear")
 
           this.hit = true
           this.speed = 5
@@ -194,7 +194,8 @@ function risingShapes(shibeImgs) {
             compare.bottom < bounds.top ||
             compare.top > bounds.bottom));
   
-        if (isOver) {elems.push(this);}
+        if (isOver) { console.log(this)
+          elems.push(this);}
       });    
   
     elems.join('');
