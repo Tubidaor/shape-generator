@@ -32,7 +32,9 @@
   user-select: none;
   z-index: 1000;
   pointer-events: none;
-  
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   opacity: 1;
   transition: opacity 1s ease-out
 }
@@ -65,7 +67,7 @@ animation: fall 5s infinite;
     height: 100%;
     width: 100%;
     position: absolute;
-    clip-path: polygon(50% 70%, 10% 8%, 90% 8%);
+    clip-path: polygon(50% 70%, 10% 5%, 90% 5%);
     background-color: white;
 }
 h1 {
