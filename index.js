@@ -95,6 +95,7 @@ function risingShapes(shibeImgs) {
     this.image = image
     this.height = (Math.floor(Math.random() * 50) + 50) + "px"
     this.rotation = rotation
+    this.hit = false
     this.element.style.backgroundImage = `url("${this.image}")`
     this.element.style.borderRadius = returnRadius()
     this.element.style.animationDelay = this.delay
@@ -147,7 +148,18 @@ function risingShapes(shibeImgs) {
       this.makeDisappear()
     }
 
-    this.overlaps(".circle-square") ? this.element.animate({"left": "-50px"}, 2000, "linear",()=>{console.log('animation ran')}): ""
+    if(this.hit === false && this.yPos < 50) {
+      const overlaps = this.overlaps(".circle-square")
+        if(overlaps.length) {
+          console.log(Object.keys(overlaps))
+          this.element.animate({"transform": `rotate(0deg) translateX(0px) rotate(0deg)`}, 2000, "linear")
+          this.element.animate({"transform": `rotate(-360deg) translateX(${overlaps[0].height}px) rotate(-360deg)`}, 2000, "linear")
+
+          this.hit = true
+          this.speed = 5
+        }
+    }
+  
 
     this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
     
@@ -159,6 +171,7 @@ function risingShapes(shibeImgs) {
     if (this.yPos < -200) {
       this.yPos = this.startingPos;
       this.speed = 100
+      this.hit = false
     }
   }
 
@@ -181,7 +194,7 @@ function risingShapes(shibeImgs) {
             compare.bottom < bounds.top ||
             compare.top > bounds.bottom));
   
-        if (isOver) {elems = elems.push(this);}
+        if (isOver) {elems.push(this);}
       });    
   
     elems.join('');
@@ -217,11 +230,9 @@ function risingShapes(shibeImgs) {
   CircleSquare.prototype.makeAppear = makeAppear
   CircleSquare.prototype.makeDisappear = makeDisappear
   CircleSquare.prototype.update = update
-  // CircleSquare.prototype.makeFall = addFallingEffect
   Triangle.prototype.makeAppear = makeAppear
   Triangle.prototype.makeDisappear = makeDisappear
   Triangle.prototype.update = update
-  // Triangle.prototype.makeFall = addFallingEffect
 
   
   function setTransform(xPos, yPos, rotation, el) {
