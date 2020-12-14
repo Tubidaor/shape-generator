@@ -59,142 +59,7 @@ $(displayImages())
 
 
 //need to make css of animation, then apply the three different styles, then once it hits, apply the other class to it.
-$.fn.overlaps = function(obj) {
-  var elems = [];
-  this.each(function() {
-      var bounds = $(this).offset();
-      bounds.right = bounds.left + $(this).outerWidth();
-      bounds.bottom = bounds.top + $(this).outerHeight();
 
-      var compare = $(obj).offset();
-      compare.right = compare.left + $(obj).outerWidth();
-      compare.bottom = compare.top + $(obj).outerHeight();
-
-      var isOver = (!(compare.right < bounds.left ||
-          compare.left > bounds.right ||
-          compare.bottom < bounds.top ||
-          compare.top > bounds.bottom));
-
-      if (isOver) {elems.push(this);}
-  });
-
-  elems.join('');
-  return elems;
-};
-
-// 
-// function recthit(rectone, recttwo){
-    
-//   var r1 = $(rectone);
-//   var r2 = $(recttwo);
-  
-//   var r1x = r1.offset().left; // 10
-//   var r1w = r1.outerWidth(); // 50
-//   var r1y = r1.offset().top; // 20
-//   var r1h = r1.outerHeight(); // 50
-  
-//   var r2x = r2.offset().left; // 70
-//   var r2w = r2.outerWidth(); // 50
-//   var r2y = r2.offset().top; // 20
-//   var r2h = r2.outerHeight(); // 50
-
-//   // console.log('circle r1', r1x, r1y)
-//   // console.log('square r2', r2x, r2y)
-  
-//   if(r1y+r1h < r2y ||
-//     r1y > r2y+r2h ||
-//     r1x > r2x+r2w ||
-//     r1x+r1w < r2x) {
-//       return false;
-//   }else{
-//       return true;   
-//   }
-  
-// }//end function 
-
-// function trianglehit(){
-    
-//   var r1 = this.element;
-//   var r2 = $("circle-square");
-  
-//   var r1x = r1.offset().left; // 10
-//   var r1w = r1.width(); // 50
-//   var r1y = r1.offset().top; // 20
-//   var r1h = r1.height(); // 50
-  
-//   var r2x = r2.offset().left; // 70
-//   var r2w = r2.width(); // 50
-//   var r2y = r2.offset().top; // 20
-//   var r2h = r2.height(); // 50
-
-//   // console.log('circle r1', r1x, r1y)
-//   // console.log('square r2', r2x, r2y)
-  
-//   if(r1y+r1h < r2y ||
-//     r1y > r2y+r2h ||
-//     r1x > r2x+r2w ||
-//     r1x+r1w < r2x) {
-//       return false;
-//   }else{
-//       return true;   
-//   }
-  
-// }
-
-// function rotate(e) {
-
-// $('.circle-square').css({
-//   top: e.pageY,
-//   left: e.pageX
-// });
-
-// const element = this.element
-
-// element.each(function(){
-//   if(recthit('.circle-square',element){
-//     $(this).css({backgroundColor:'yellow'});
-//   } else {
-//     $(this).css({backgroundColor:'black'});
-//   }
-// });// end each
-// $('.triangle').each(function(){
-//   if(trianglehit('.circle-square',$(this))){
-//     $(this).css({backgroundColor:'yellow'});
-//   } else {
-//     $(this).css({backgroundColor:'black'});
-//   }
-// });// end each
-// }
-
-
-// });
-//end function 
-// $(document).mousemove(function(e) {
-
-// $('.circle').css({
-//   top: e.pageY,
-//   left: e.pageX
-// });
-
-//one to many hit detect
-// $('.square').each(function(){
-//   if(recthit('.circle',$(this))){
-//     $(this).css({backgroundColor:'yellow'});
-//   } else {
-//     $(this).css({backgroundColor:'black'});
-//   }
-// });// end each
-// $('.triangle').each(function(){
-//   if(trianglehit('.circle',$(this))){
-//     $(this).css({backgroundColor:'yellow'});
-//   } else {
-//     $(this).css({backgroundColor:'black'});
-//   }
-// });// end each
-
-
-// });
- // end mousmove
 
 function risingShapes(shibeImgs) {
 
@@ -312,15 +177,10 @@ function risingShapes(shibeImgs) {
 function update() {
     // using some trigonometry to determine our x and y position
     // this.xPos += this.sign * this.speed * Math.cos(this.counter) / 40;
+    this.counter += this.speed / 5000;
     if(this.yPos < 0) {
       this.speed = 5
-      
-    } else {
-      if(this.yPos > 50) {
-        this.speed = 100
-      }
-    }
-    this.counter += this.speed / 5000;
+    } 
 
     if(this.yPos > ((browserHeight/2) - 50) && this.yPos < (browserHeight/2)) {
       this.makeAppear()
@@ -329,13 +189,18 @@ function update() {
     if(this.yPos < -100 && this.yPos > -200) {
       this.makeDisappear()
     }
-    if(this.element.classList.contains('triangle') && (this.yPos < 50 && this.yPos > 0)) {
-      this.collision()
+
+    if(this.yPos < 50) {
+      this.overlaps(".circle-square") ? this.speed = 3: ""
+
+      // console.log(this.overlaps(".circle-square"))
     }
 
-    
-  
-    
+
+    // if(this.element.classList.contains('triangle') && (this.yPos < 50 && this.yPos > 0)) {
+    //   this.collision()
+    // }
+
     this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
     // this.yPos -= Math.sin(this.counter)
     // this.scale = .5 + Math.abs(10 * Math.cos(this.counter) / 20);
@@ -346,29 +211,99 @@ function update() {
     // if snowflake goes below the browser window, move it back to the top
     if (this.yPos < -200) {
       this.yPos = this.startingPos;
+      this.speed = 100
     }
     
   }
+  // $.fn.overlaps = function overlaps(obj) {
+  //   var elems = [];
+  //   this.each(function() {
+  //       var bounds = $(this).offset();
+  //       bounds.right = bounds.left + $(this).innerWidth();
+  //       bounds.bottom = bounds.top + $(this).innerHeight();
+  
+  //       var compare = $(obj).offset();
+  //       compare.right = compare.left + $(obj).innerWidth();
+  //       compare.bottom = compare.top + $(obj).innerHeight();
+  
+  //       var isOver = (!(compare.right < bounds.left ||
+  //           compare.left > bounds.right ||
+  //           compare.bottom < bounds.top ||
+  //           compare.top > bounds.bottom));
+  
+  //       if (isOver) {elems.push(this);}
+  //   });
+  
+  //   elems.join('');
+  //   return elems;
+  // };
+  function overlaps(objClass) {
+    var elems = false;
+    const objects = $(objClass)
+    const thisObj = this.element
+    // console.log(objects, thisObj)
+
+    objects.each(function() {
+        var bounds = $(this).offset();
+        bounds.right = bounds.left + $(this).innerWidth();
+        bounds.bottom = bounds.top + $(this).innerHeight();
+  
+        var compare = $(thisObj).offset();
+        compare.right = compare.left + $(thisObj).innerWidth();
+        compare.bottom = compare.top + $(thisObj).innerHeight();
+  
+        var isOver = (!(compare.right < bounds.left ||
+            compare.left > bounds.right ||
+            compare.bottom < bounds.top ||
+            compare.top > bounds.bottom));
+  
+        if (isOver) {elems = true;}
+    });    
+  
+    // elems.join('');
+    return elems;
+  };
+
+  Triangle.prototype.overlaps = overlaps
+  Circle.prototype.overlaps = overlaps
+
   function collision() {
     // console.log('it collided')
       let box = this.element
       let area = $('.circle-square')
       let area2 = $('.triangle')
-
       let hitCircle = area.overlaps(box)
       let hitTriangle = area2.overlaps(box)
       // isOver? console.log(this.element): console.log("not over")
-      if(hitCircle.length) {
-        this.speed = 5
-        // console.log(isOver[0].height)
-      }
-      if(hitTriangle.length) {
+      if(hitCircle.length || hitTriangle.length) {
+        console.log(hitTriangle.length)
         this.speed = 5
       }
-  
-      // $(box)[isOver.length ? 'addClass' : 'removeClass']('over');
     
   }
+  // $.fn.overlaps = function overlaps(obj) {
+  //   var elems = [];
+  //   this.each(function() {
+  //       var bounds = $(this).offset();
+  //       bounds.right = bounds.left + $(this).outerWidth();
+  //       bounds.bottom = bounds.top + $(this).outerHeight();
+  
+  //       var compare = $(obj).offset();
+  //       compare.right = compare.left + $(obj).outerWidth();
+  //       compare.bottom = compare.top + $(obj).outerHeight();
+  
+  //       var isOver = (!(compare.right < bounds.left ||
+  //           compare.left > bounds.right ||
+  //           compare.bottom < bounds.top ||
+  //           compare.top > bounds.bottom));
+  
+  //       if (isOver) {elems.push(this);}
+  //   });
+  
+  //   elems.join('');
+  //   return elems;
+  // };
+
   function makeAppear() {
     let box = this.element
 
@@ -401,11 +336,12 @@ function update() {
   Circle.prototype.makeDisappear = makeDisappear
   Circle.prototype.update = update
   Circle.prototype.makeFall = addFallingEffect
+  // Circle.prototype.collision = collision
   Triangle.prototype.makeAppear = makeAppear
   Triangle.prototype.makeDisappear = makeDisappear
   Triangle.prototype.update = update
   Triangle.prototype.makeFall = addFallingEffect
-  Triangle.prototype.collision = collision
+  // Triangle.prototype.collision = collision
 
   // Circle.prototype.makeAppear = function () {
 
