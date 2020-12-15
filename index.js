@@ -7,7 +7,7 @@ function getShibeImages() {
   //provide the needed origin headers on the response, keeping cors middleware
   //proxy so that it sets the headers on the response. 
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-  const url = 'http://shibe.online/api/shibes?count=50&urls=true&httpsUrls=false'
+  const url = 'https://shibe.online/api/shibes?count=50&urls=true&httpsUrls=false'
   return fetch(proxyUrl + url, {
     method: "GET",
     headers: {
