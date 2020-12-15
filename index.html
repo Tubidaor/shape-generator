@@ -6,6 +6,7 @@
     <title>
       Shape Generator
     </title>
+    <meta name="description" content="Random shape generator and anination.">
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -15,11 +16,11 @@
   </head>
   <body>
     <main class="main">
-      <div class="shape-gen-con" id="shape-gen-wrapper">
+      <section class="shape-gen-con" id="shape-gen-wrapper">
         <div class="circle-square hidden" id="circle-square">
         </div>
         <div class="triangle hidden"></div>
-      </div>
+      </section>
       <form class="shape-form">
         <header>
           <h1>Shape Generator</h1>
@@ -75,7 +76,7 @@
           <button type="submit" class="sub-btn" id="clear">Clear Screen</button>
         </div>
       </form>
-      <div class="shape-preview" id="shape-preview">
+      <section class="shape-preview" id="shape-preview">
         <div class="circle-preview shape-hidden img-bk" id="circle-preview">
         </div>
         <div class="square-preview img-bk" id="square-preview">
@@ -83,9 +84,8 @@
         <div class="triangle-preview shape-hidden" id="triangle-preview">
             <div class="triangle-inner img-bk"> </div>
         </div>
-      </div>
+      </section>
     </main>
     <script src="index.js"></script>
-    <!-- <script src="floating-shibes.js"></script> -->
   </body>
 </html>

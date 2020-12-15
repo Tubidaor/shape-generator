@@ -1,16 +1,15 @@
-// let shibeImgs = ["http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg"]
-
 let shibeImgs = []
+
 // Get request to fetch Shibe images.
 function getShibeImages() {
   //using cors anywhere to bypass CORS issues on local host.
-
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  //Commenting out proxy for production. 
+  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
   const url = 'http://shibe.online/api/shibes?count=50&urls=true&httpsUrls=false'
-  return fetch(proxyUrl + url, {
+  return fetch(url, {
     method: "GET",
     headers: {
-      "content-type": 'application/json'
+      "content-type": 'application/json',
     }
   })
   .then(res => 
@@ -41,7 +40,7 @@ function risingShapes(shibeImgs) {
   /// To see if document matches media query.
   let reduceMotionQuery = matchMedia("(prefers-reduced-motion)")
 
-// To enable animations if motion query matches
+// To enable animations if motion query matches.
   function setAccessibilityState() {
     if (reduceMotionQuery.matches) {
       enableAnimations = false;
@@ -111,10 +110,10 @@ function risingShapes(shibeImgs) {
     
   }
 
-  //Creating an object for Triangle shapes
+  //Creating an object for triangle shapes
   function Triangle(element, speed, xPos, yPos, delay, image, startingPos,
     rotation) {
-    // Set initial object properties
+    // Set initial object properties.
     function returnColor(){
       const colors = ["#186a3b", "#27ae60", "#154360", "#58d68d", " #2471a3",
         "#7fb3d5", "#f39c12", "#e67e22", "#eb984e", "#a6acaf"]
@@ -139,7 +138,7 @@ function risingShapes(shibeImgs) {
   }
   
   function update() {
-    // Determine position and update position
+    // Determine position and update position.
     this.counter += this.speed / 5000;
     if(this.yPos < 0) {
       this.speed = 5
@@ -191,6 +190,7 @@ function risingShapes(shibeImgs) {
     }
   }
 
+  //Function to check if there is a collision with another element. 
   function overlaps() {
     let elems = [];
     const objects = $(this.element).siblings()
@@ -219,7 +219,7 @@ function risingShapes(shibeImgs) {
   };
   
   
-  
+  //Function to make element appear. 
   function makeAppear() {
     let box = this.element
     
@@ -231,6 +231,7 @@ function risingShapes(shibeImgs) {
     }
   }
   
+  //Function to make element dissappear. 
   function makeDisappear () {
     let box = this.element
     if (!box.classList.contains('hidden')) {
@@ -261,7 +262,7 @@ function risingShapes(shibeImgs) {
     let originalCircle = document.querySelector(".circle-square");
     let originalTriangle = document.querySelector(".triangle");
 
-    // Access objects element's parent container
+    // Access objects element's parent container.
     let circleContainer = originalCircle.parentNode;
     let triangleContainer = originalCircle.parentNode
     
@@ -430,7 +431,6 @@ function labelColorChange() {
         orangeLabel.style.color = "black"
         blueLabel.style.color = "black"
         greenLabel.style.color = "green"
-
       }
     })
   })
@@ -532,5 +532,3 @@ $(generateShibeShape())
 $(labelColorChange())
 $(clear())
 $(displayImages())
-
-
