@@ -31,6 +31,26 @@
   opacity: 1;
   transition: opacity 1s ease-out
 }
+.square {
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transition: opacity 1s ease-out
+}
+.circle {
+  position: absolute;
+  user-select: none;
+  pointer-events: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+  transition: opacity 1s ease-out
+}
 .hidden {
   display: none;
 }

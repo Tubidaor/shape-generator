@@ -1,12 +1,13 @@
-let shibeImgs = ["http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg"]
+// let shibeImgs = ["http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg","http://cdn.shibe.online/shibes/0bd5008f54215793a97a336571dd326fca5f2306.jpg","http://cdn.shibe.online/shibes/c1af70ecb3747c63ae91643ac37daa935c0665d6.jpg","http://cdn.shibe.online/shibes/593d4ea7d4a4763b380027c6badf2bd1bd2ac4b1.jpg","http://cdn.shibe.online/shibes/170806f7db8df79f15ff3df8d166cdb388a8961a.jpg","http://cdn.shibe.online/shibes/e0d907908da8db9ccf281ed0f3dee80ecadab810.jpg","http://cdn.shibe.online/shibes/c19ce3cd5be69e5d965d6b9c07c91615eb5d3bf2.jpg","http://cdn.shibe.online/shibes/27847ef23c5679eb4891d06badc890cf59e07b65.jpg","http://cdn.shibe.online/shibes/515ad674aa5e540f8ed8cb63c0b2ead55a032fa8.jpg","http://cdn.shibe.online/shibes/c5699177f0fc8206974af54aab13234e962aeeff.jpg","http://cdn.shibe.online/shibes/2d3f264d5dc87bdbc620fd5a7476b61162b74e2f.jpg"]
+
+let shibeImgs = []
 // Get request to fetch Shibe images.
 function getShibeImages() {
-  // using cors anywhere to bypass CORS issues on local host.
+  //using cors anywhere to bypass CORS issues on local host.
 
-  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-  const proxyUrl = "http://www.whateverorigin.org/get?url="
-  const url = 'http://shibe.online/api/shibes?count=10&urls=true&httpsUrls=false'
-  return fetch(proxyUrl +  encodeURIComponent(url), {
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const url = 'http://shibe.online/api/shibes?count=50&urls=true&httpsUrls=false'
+  return fetch(proxyUrl + url, {
     method: "GET",
     headers: {
       "content-type": 'application/json'
@@ -22,16 +23,14 @@ function getShibeImages() {
 
 // Function to run fetch request and then generate random shapes with shibes.
 function displayImages() {
-  risingShapes(shibeImgs)
-  // getShibeImages()
-  //   .then(images => risingShapes(images)
-  //   )
-
-  // risingShapes(shibeImgs)
+  getShibeImages()
+    .then(images => {
+      shibeImgs = images
+      risingShapes(images)
+    })
 }
   
-function risingShapes(shibeImgs) {
-    
+function risingShapes(shibeImgs) {    
   let shibes = []
   let browserWidth = document.documentElement.clientWidth;
   let  browserHeight = document.documentElement.clientHeight;
@@ -59,12 +58,9 @@ function risingShapes(shibeImgs) {
   function setup() {
     if (enableAnimations) {
       //Event listeners to start animation.
-      // if(document.readyState === "complete") {
-      //   console.log('ready')
-      //   setTimeout(generateCircle, 5000)
-        window.addEventListener("DOMContentLoaded", generateShapes, true);
-        // window.addEventListener("DOMContentLoaded", generateTriangle, true);
-      // }
+      if(document.readyState === "loading" || document.readyState === "complete") {
+        setTimeout(generateShapes, 5000)
+      }
       window.addEventListener("resize", setResetFlag, false)
     }
   }
@@ -103,6 +99,15 @@ function risingShapes(shibeImgs) {
     this.element.style.width = this.height
     this.element.style.border = `5px solid ${returnColor()}`
     this.counter = 0;
+
+    if(this.element.style.borderRadius === "50%") {
+      this.element.classList.add("circle")
+      this.element.classList.remove("circle-square")
+    }
+    if(this.element.style.borderRadius === "0px") {
+      this.element.classList.add("square")
+      this.element.classList.remove("circle-square")
+    }
     
   }
 
@@ -123,6 +128,7 @@ function risingShapes(shibeImgs) {
     this.yPos = yPos;
     this.startingPos = startingPos
     this.image = image
+    this.hit = false
     this.height = Math.floor(Math.random() * 100) + "px"
     this.rotation = rotation
     this.element.style.animationDelay = this.delay
@@ -149,16 +155,20 @@ function risingShapes(shibeImgs) {
       this.makeDisappear()
     }
 
+    // const element = this.element
+
+    //To change animation. If object hits another object, animation starts.
     if(this.hit === false && this.yPos < 75) {
-      const overlaps = this.overlaps(".circle-square")
+      //This method of checking to see if there was contact creates a lot of lag
+      // and its not efficient. I was unable to find a better solution.
+      const overlaps = this.overlaps()
         if(overlaps.length > 1) {
           // console.log(overlaps[0])
           // this.element.animate({"transform": `rotate(${this.rotation}deg) translateX(${Math.round($(overlaps[0]).height())}px) rotate(${this.rotation}deg)`}, 2000, "linear")
           // this.element.animate({"transform": `rotate(${this.rotation + 360}deg) translateX(${Math.round($(overlaps[0]).height())/2}px) rotate(${this.rotation -360}deg)`}, 4000, "linear")
           // this.element.animate({"transform": `rotate(${this.rotation + 360}deg) translateY(-200px) rotate(${this.rotation -360}deg)`}, 4000, "linear")
-
-          this.element.animate({"transform": `rotate(360deg) translate(20px,-${Math.round(this.yPos)*5}px) rotate(-360deg)`}, 6000, 'linear', function() {
-            console.log( "all done" )})
+          // this.element.animate({"transform": `rotate(360deg) translate(20px,-${Math.round(this.yPos)*5}px) rotate(-360deg)`}, 6000, 'linear', function() {
+          //   console.log( "all done" )})
           // this.makeDisappear()
 
           this.hit = true
@@ -181,9 +191,9 @@ function risingShapes(shibeImgs) {
     }
   }
 
-  function overlaps(objClass) {
+  function overlaps() {
     let elems = [];
-    const objects = $(objClass)
+    const objects = $(this.element).siblings()
     const thisObj = this.element
 
     objects.each(function() {
@@ -208,13 +218,11 @@ function risingShapes(shibeImgs) {
     return elems;
   };
   
-  Triangle.prototype.overlaps = overlaps
-  CircleSquare.prototype.overlaps = overlaps
-
-
+  
+  
   function makeAppear() {
     let box = this.element
-
+    
     if (box.classList.contains('hidden')) {
       box.classList.remove('hidden');
       setTimeout(function() {
@@ -222,7 +230,7 @@ function risingShapes(shibeImgs) {
       }, 50);
     }
   }
-
+  
   function makeDisappear () {
     let box = this.element
     if (!box.classList.contains('hidden')) {
@@ -232,15 +240,17 @@ function risingShapes(shibeImgs) {
       },50)
     }
   }
-
+  
   //To assign common functions to individual objects.
   CircleSquare.prototype.makeAppear = makeAppear
   CircleSquare.prototype.makeDisappear = makeDisappear
   CircleSquare.prototype.update = update
+  CircleSquare.prototype.overlaps = overlaps
   Triangle.prototype.makeAppear = makeAppear
   Triangle.prototype.makeDisappear = makeDisappear
   Triangle.prototype.update = update
-
+  Triangle.prototype.overlaps = overlaps
+  
   
   function setTransform(xPos, yPos, rotation, el) {
     el.style.transform = `translate(${xPos}px, ${yPos}px) rotate(${rotation}deg)`
@@ -311,7 +321,7 @@ function risingShapes(shibeImgs) {
       }
 
        //Create object and push it to the Shibe ojbect array.
-       let triangleObject = new Triangle(triangleClone,
+      let triangleObject = new Triangle(triangleClone,
         speed,
         initialXPos,
         initialYPos,
