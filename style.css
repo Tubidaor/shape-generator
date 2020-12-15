@@ -1,13 +1,11 @@
-
+:root {
+  --triangleHeight: 150px;
+  --squareCircleHeight: 100px;
+  --shapePreviewSize: 150px;
+}
 * {
   box-sizing: border-box;
 }
-/* .main {
-  background-color: aliceblue;
-} */
-/* .shape-gen-con {
-  height: 60vh;
-} */
 #shape-gen-wrapper {
   position: absolute;
   left: 0px;
@@ -16,21 +14,16 @@
   height: 50vh;
   width: 100%;
   overflow: hidden;
-  /* z-index: 5; */
 }
-
 .shibe-img {
   height: 50px;
   width: 50px;
   margin-left: auto;
   margin-right: auto;
 }
-
-
 .circle-square{
   position: absolute;
   user-select: none;
-  z-index: 1000;
   pointer-events: none;
   background-position: center;
   background-size: cover;
@@ -38,37 +31,33 @@
   opacity: 1;
   transition: opacity 1s ease-out
 }
-
 .hidden {
   display: none;
 }
 .over {
 animation: fall 5s infinite;  
 }
-
 .visuallyhidden {
   opacity: 0;
 }
-
 .triangle {
   height: 70px;
   width: 70px;
   position: absolute;
   user-select: none;
-  /* z-index: 1000; */
   pointer-events: none;
   clip-path: polygon(50% 80%, 0 0%, 100% 0%);
   opacity: 1;
   transition: opacity 1s ease-out
 }
 .triangle::before {
-    content: "";
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    clip-path: polygon(50% 70%, 10% 5%, 90% 5%);
-    background-color: white;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  clip-path: polygon(50% 70%, 10% 5%, 90% 5%);
+  background-color: white;
 }
 h1 {
   font-size: 1.6rem;
@@ -86,7 +75,6 @@ h2 {
   width: 40vw;
   left: 20px;
   top: calc(100vh - 50vh);
-  
 }
 .choices-con {
   display: flex;
@@ -98,7 +86,6 @@ h2 {
   display: flex;
   align-items: center;
   width: 50px;
-  /* align-self: baseline; */
 }
 .input-wrapper {
   display: flex;
@@ -116,21 +103,21 @@ h2 {
 #orange-label {
   color: orange;
 }
-
 #blue-label, #green-label {
   color: black;
 }
 .shape-preview {
   position: absolute;
   display: none;
-  height: 50vh;
-  width: 60vw;
-  right: 0;
+  top: 50vh;
+  right: 25px;
+  height: var(--shapePreviewSize);
+  width: var(--shapePreviewSize);
   top: calc(100vh - 50vh);
 }
 .circle-preview {
-  height: 100px;
-  width: 100px;
+  height: var(--squareCircleHeight);
+  width: var(--squareCircleHeight);
   border: 5px solid orange;
   border-radius: 50%;
   margin-left: auto;
@@ -138,16 +125,16 @@ h2 {
   background-size: cover;
 }
 .square-preview {
-  height: 100px;
-  width: 100px;
+  height: var(--squareCircleHeight);
+  width: var(--squareCircleHeight);
   border: 5px solid orange;
   margin-left: auto;
   margin-right: auto;
   background-size: cover;
 }
 .triangle-preview {
-  height: 150px;
-  width: 150px;
+  height: var(--triangleHeight);
+  width: var(--triangleHeight);
   background-color: orange;
   margin-left: auto;
   margin-right: auto;
@@ -158,7 +145,6 @@ h2 {
   height: 100%;
   width: 100%;
   background-size: cover;
-  /* border-bottom: 5px solid orange; */
   clip-path: polygon(50% 10%, 8% 85%, 92% 85%);
 }
 .shape-hidden {
@@ -168,8 +154,9 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding-bottom: 25px;
+  width: 250px;
 }
-
 .sub-btn {
   color: black;
   border: 2px solid black;
@@ -177,7 +164,6 @@ h2 {
   padding: 4px 22px 4px 22px;
   margin-top: 10px;
 }
-
 .sub-btn:active {
   background-color: black;
   color: white;
@@ -192,55 +178,23 @@ h2 {
   margin-left: 10px;
 }
 input[type="radio"] {
-
+  cursor: pointer;
   border: 2px solid black !important;
 }
-input[type="radio"]:hover {
-  cursor: pointer;
-}
 
-.img-preview {
-  height: 100px;
-  width: 100px;
-  border: 5px solid transparent;
-
-}
-.falling {
-  animation: myOrbit 5s ease-in-out;
-}
-
-@keyframes fall {
-  from, 15% {
-      transform: rotate(0);
-      opacity: 1;
-      animation-timing-function: cubic-bezier(.07,2.02,.67,.57);
+@media only screen and (min-width: 600px) {
+  .shape-preview {
+    width: 60vw;
+    height: 50vh;
+    right: 0;
   }
-  50%, 60% {
-      transform: rotate(90deg);
-      opacity: 1;
-      animation-timing-function: cubic-bezier(.13,.84,.82,1);
+  .square-preview {
+    --squareCircleHeight: 200px;
   }
-  85%, to {
-      transform: rotate(90deg);
-      opacity: 0;
+  .circle-preview {
+    --squareCircleHeight: 200px;
   }
-}
-@-webkit-keyframes myOrbit {
-  from { -webkit-transform: rotate(0deg) translateX(150px) rotate(0deg); }
-  to   { -webkit-transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-}
-
-@-moz-keyframes myOrbit {
-  from { -moz-transform: rotate(0deg) translateX(150px) rotate(0deg); }
-  to   { -moz-transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-}
-
-@-o-keyframes myOrbit {
-  from { -o-transform: rotate(0deg) translateX(150px) rotate(0deg); }
-  to   { -o-transform: rotate(360deg) translateX(150px) rotate(-360deg); }
-}
-
-@keyframes myOrbit {
-  from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+  .triangle-preview {
+    --triangleHeight: 250px;
+  }
 }
