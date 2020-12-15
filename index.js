@@ -3,14 +3,15 @@ let shibeImgs = []
 // Get request to fetch Shibe images.
 function getShibeImages() {
   //using cors anywhere to bypass CORS issues on local host.
-  //Commenting out proxy for production. 
-  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
-  const url = 'https://shibe.online/api/shibes?count=50&urls=true&httpsUrls=true'
-  return fetch(url, {
+  //After deployment there were still cors issues because the server did not 
+  //provide the needed origin headers on the response, keeping cors middleware
+  //proxy so that it sets the headers on the response. 
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const url = 'http://shibe.online/api/shibes?count=50&urls=true&httpsUrls=false'
+  return fetch(proxyUrl + url, {
     method: "GET",
     headers: {
       "content-type": 'application/json',
-      "Access-Control-Allow-Origin": '*',
     }
   })
   .then(res => 
