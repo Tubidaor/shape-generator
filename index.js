@@ -10,6 +10,7 @@ function getShibeImages() {
     method: "GET",
     headers: {
       "content-type": 'application/json',
+      "Access-Control-Allow-Origin": '*',
     }
   })
   .then(res => 
