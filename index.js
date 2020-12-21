@@ -33,8 +33,8 @@ function displayImages() {
   
 function risingShapes(shibeImgs) {    
   let shibes = []
-  let browserWidth = document.documentElement.clientWidth;
-  let  browserHeight = document.documentElement.clientHeight;
+  let browserWidth = document.documentElement.clientWidth
+  let  browserHeight = document.documentElement.clientHeight
   let timing = 0
   let numberOfShapes = shibeImgs.length
   let resetPosition = false
@@ -45,9 +45,9 @@ function risingShapes(shibeImgs) {
 // To enable animations if motion query matches.
   function setAccessibilityState() {
     if (reduceMotionQuery.matches) {
-      enableAnimations = false;
+      enableAnimations = false
     } else { 
-      enableAnimations = true;
+      enableAnimations = true
     }
   }
   setAccessibilityState()
@@ -59,7 +59,8 @@ function risingShapes(shibeImgs) {
   function setup() {
     if (enableAnimations) {
       //Event listeners to start animation.
-      if(document.readyState === "loading" || document.readyState === "complete") {
+      if(document.readyState === "loading" ||
+        document.readyState === "complete") {
         setTimeout(generateShapes, 5000)
       }
       window.addEventListener("resize", setResetFlag, false)
@@ -84,11 +85,11 @@ function risingShapes(shibeImgs) {
       return radius[Math.floor(Math.random() * 2)]
     }
     
-    this.element = element;
-    this.speed = speed;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.startingPos = startingPos;
+    this.element = element
+    this.speed = speed
+    this.xPos = xPos
+    this.yPos = yPos
+    this.startingPos = startingPos
     this.image = image
     this.height = (Math.floor(Math.random() * 50) + 50) + "px"
     this.rotation = rotation
@@ -99,7 +100,7 @@ function risingShapes(shibeImgs) {
     this.element.style.height = this.height
     this.element.style.width = this.height
     this.element.style.border = `5px solid ${returnColor()}`
-    this.counter = 0;
+    this.counter = 0
 
     if(this.element.style.borderRadius === "50%") {
       this.element.classList.add("circle")
@@ -123,10 +124,10 @@ function risingShapes(shibeImgs) {
       return colors[Math.floor(Math.random() * 10)]
     }
     
-    this.element = element;
-    this.speed = speed;
-    this.xPos = xPos;
-    this.yPos = yPos;
+    this.element = element
+    this.speed = speed
+    this.xPos = xPos
+    this.yPos = yPos
     this.startingPos = startingPos
     this.image = image
     this.hit = false
@@ -136,12 +137,12 @@ function risingShapes(shibeImgs) {
     this.element.style.height = this.height
     this.element.style.width = this.height
     this.element.style.backgroundColor = returnColor()
-    this.counter = 0;    
+    this.counter = 0 
   }
   
   function update() {
     // Determine position and update position.
-    this.counter += this.speed / 5000;
+    this.counter += this.speed / 5000
     if(this.yPos < 0) {
       this.speed = 5
       this.hit = true
@@ -178,15 +179,15 @@ function risingShapes(shibeImgs) {
     }
   
 
-    this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30;
+    this.yPos -= Math.sin(this.counter) / 40 + this.speed / 30
     
     // Set position.
     setTransform(Math.round(this.xPos), Math.round(this.yPos), this.rotation,
-      this.element);
+      this.element)
 
     // If object goes above the browser window, move it back to the top and reset speed.
     if (this.yPos < -200) {
-      this.yPos = this.startingPos;
+      this.yPos = this.startingPos
       this.speed = 100
       this.hit = false
     }
@@ -194,31 +195,31 @@ function risingShapes(shibeImgs) {
 
   //Function to check if there is a collision with another element. 
   function overlaps() {
-    let elems = [];
+    let elems = []
     const objects = $(this.element).siblings()
     const thisObj = this.element
 
     objects.each(function() {
-      let bounds = $(this).offset();
-        bounds.right = bounds.left + $(this).innerWidth();
-        bounds.bottom = bounds.top + $(this).innerHeight();
+      let bounds = $(this).offset()
+        bounds.right = bounds.left + $(this).innerWidth()
+        bounds.bottom = bounds.top + $(this).innerHeight()
   
-        let compare = $(thisObj).offset();
-        compare.right = compare.left + $(thisObj).innerWidth();
-        compare.bottom = compare.top + $(thisObj).innerHeight();
+        let compare = $(thisObj).offset()
+        compare.right = compare.left + $(thisObj).innerWidth()
+        compare.bottom = compare.top + $(thisObj).innerHeight()
   
         let isOver = (!(compare.right < bounds.left ||
             compare.left > bounds.right ||
             compare.bottom < bounds.top ||
-            compare.top > bounds.bottom));
+            compare.top > bounds.bottom))
   
-        if (isOver) {return elems.push(this);}
+        if (isOver) {return elems.push(this)}
         
-      });    
+      })
   
-    elems.join('');
-    return elems;
-  };
+    elems.join('')
+    return elems
+  }
   
   
   //Function to make element appear. 
@@ -226,10 +227,10 @@ function risingShapes(shibeImgs) {
     let box = this.element
     
     if (box.classList.contains('hidden')) {
-      box.classList.remove('hidden');
+      box.classList.remove('hidden')
       setTimeout(function() {
-        box.classList.remove('visuallyhidden');
-      }, 50);
+        box.classList.remove('visuallyhidden')
+      }, 50)
     }
   }
   
@@ -237,9 +238,9 @@ function risingShapes(shibeImgs) {
   function makeDisappear () {
     let box = this.element
     if (!box.classList.contains('hidden')) {
-      box.classList.add('visuallyhidden');    
+      box.classList.add('visuallyhidden')  
       setTimeout(function() {
-        box.classList.add('hidden');
+        box.classList.add('hidden')
       },50)
     }
   }
@@ -261,14 +262,14 @@ function risingShapes(shibeImgs) {
 
   function generateShapes() {
     // Get nodes that will be copied.
-    let originalCircle = document.querySelector(".circle-square");
-    let originalTriangle = document.querySelector(".triangle");
+    let originalCircle = document.querySelector(".circle-square")
+    let originalTriangle = document.querySelector(".triangle")
 
     // Access objects element's parent container.
-    let circleContainer = originalCircle.parentNode;
+    let circleContainer = originalCircle.parentNode
     let triangleContainer = originalCircle.parentNode
     
-    circleContainer.style.display = "block";
+    circleContainer.style.display = "block"
 
     let startingOffset = -50
 
@@ -278,10 +279,10 @@ function risingShapes(shibeImgs) {
       startingOffset = startingOffset + 150
       if(i % 2 === 0) {
       // Clone our original object and add it to its container.
-      let circleClone = originalCircle.cloneNode(true);
-      circleContainer.appendChild(circleClone);
-      let initialXPos = setPositionX(50, browserWidth);
-      let initialYPos = setPositionY(startingOffset, browserHeight);
+      let circleClone = originalCircle.cloneNode(true)
+      circleContainer.appendChild(circleClone)
+      let initialXPos = setPositionX(50, browserWidth)
+      let initialYPos = setPositionY(startingOffset, browserHeight)
       let speed = 100
       let initialDelay = `${timing}s`
       let shibeImage = shibeImgs[i]
@@ -303,16 +304,16 @@ function risingShapes(shibeImgs) {
         shibeImage,
         initialYPos,
         rotation()
-        );
-      shibes.push(circleObject);
+        )
+      shibes.push(circleObject)
     } else {
        // clone our original object and add it to its container.
-      let triangleClone = originalTriangle.cloneNode(true);
-      triangleContainer.appendChild(triangleClone);
+      let triangleClone = originalTriangle.cloneNode(true)
+      triangleContainer.appendChild(triangleClone)
 
        // Set object's initial position and individual propreties
-      let initialXPos = setPositionX(50, browserWidth);
-      let initialYPos = setPositionY(startingOffset, browserHeight);
+      let initialXPos = setPositionX(50, browserWidth)
+      let initialYPos = setPositionY(startingOffset, browserHeight)
       let speed = 100
       let initialDelay = `${timing}s`
       let rotation = () => {
@@ -332,15 +333,15 @@ function risingShapes(shibeImgs) {
         false,
         initialYPos,
         rotation()
-      );
-      shibes.push(triangleObject);
+      )
+      shibes.push(triangleObject)
     }
   }
-    circleContainer.removeChild(originalCircle);
-    triangleContainer.removeChild(originalTriangle);
+    circleContainer.removeChild(originalCircle)
+    triangleContainer.removeChild(originalTriangle)
 
     
-    moveShapes();
+    moveShapes()
   }
 
   function moveShapes() {
@@ -348,32 +349,32 @@ function risingShapes(shibeImgs) {
 
     if (enableAnimations) {
       for (let i = 0; i < shibes.length; i++) {
-        let shape = shibes[i];
-        shape.update();
+        let shape = shibes[i]
+        shape.update()
       }      
     }
 
     // Reset the position of all the objects to a new value if screen size changes
     if (resetPosition) {
-      browserWidth = document.documentElement.clientWidth;
-      browserHeight = document.documentElement.clientHeight;
+      browserWidth = document.documentElement.clientWidth
+      browserHeight = document.documentElement.clientHeight
 
       for (let i = 0; i < shibes.length; i++) {
         startingOffset = startingOffset + 150
-        let shape = shibes[i];
+        let shape = shibes[i]
 
-        shape.xPos = setPositionX(50, browserWidth);
-        shape.yPos = setPositionY(startingOffset, browserHeight);
+        shape.xPos = setPositionX(50, browserWidth)
+        shape.yPos = setPositionY(startingOffset, browserHeight)
       }
-      resetPosition = false;
+      resetPosition = false
     }
-    requestAnimationFrame(moveShapes);
+    requestAnimationFrame(moveShapes)
   }
   
   //To set position Y of object based on screen size.
   function setPositionY(offset, size) {
     const position = size - (size * .5) + offset
-    return position;
+    return position
   }
 
   //To set position X of object based on screen size.
@@ -384,7 +385,7 @@ function risingShapes(shibeImgs) {
   //To change reset position, if true animation x y coordinates change on new
   // screen size.
   function setResetFlag(e) {
-    resetPosition = true;
+    resetPosition = true
   }
 }
 
